@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Romain Pereira</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root { --primary: #E9530D; --secondary: #36286D; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow: hidden; background-color: #f8fafc; color: #333; }
+
+        /* --- SCROLL SNAP --- */
+        .snap-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        section {
+            height: 100vh;
+            scroll-snap-align: start;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* --- ANIMATIONS D'ENTRÉE (ARRIVÉE LÉGÈRE) --- */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.5, 0, 0, 1);
+        }
+        
+        .reveal-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Délais pour effet cascade */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
+
+        /* --- NAVIGATION POINTS (DROITE) --- */
+        .side-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(54, 40, 109, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-dot.active {
+            background-color: #E9530D;
+            transform: scale(1.4);
+        }
+        .nav-dot::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #36286D;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+            white-space: nowrap;
+        }
+        .nav-dot:hover::after { opacity: 1; transform: translateY(-50%) translateX(-5px); }
+
+
+        /* --- MENU BULLE (GAUCHE - AUTO OPEN) --- */
+        .nav-bubble-container {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 100;
+        }
+
+        .bubble-wrapper {
+            background: #E9530D;
+            border-radius: 30px;
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* Effet ressort */
+            box-shadow: 0 4px 15px rgba(233, 83, 13, 0.4);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* État Ouvert */
+        .bubble-wrapper.open {
+            width: 220px;
+            height: 320px;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .menu-header {
+            height: 60px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            color: white;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .bubble-wrapper.open .menu-header {
+            justify-content: flex-start;
+            padding-left: 20px;
+            color: #36286D;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .menu-icon { font-size: 1.5rem; transition: transform 0.4s; }
+        .bubble-wrapper.open .menu-icon { transform: rotate(90deg); color: #E9530D; }
+        
+        .menu-title-text {
+            position: absolute;
+            left: 60px;
+            opacity: 0;
+            white-space: nowrap;
+            font-weight: bold;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+        .bubble-wrapper.open .menu-title-text { opacity: 1; }
+
+        .menu-links {
+            padding: 10px 20px;
+            opacity: 0;
+            transition: opacity 0.3s 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .bubble-wrapper.open .menu-links { opacity: 1; }
+
+        .nav-link {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            display: block;
+            padding: 5px 0;
+            transform: translateX(-10px);
+        }
+        .bubble-wrapper.open .nav-link { transform: translateX(0); }
+        .nav-link:hover { color: #E9530D; padding-left: 5px; }
+
+
+        /* --- SECTIONS STYLES --- */
+        .hero-bg { background: linear-gradient(135deg, #36286D 0%, #2a1f55 50%, #E9530D 100%); }
+        .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+        .overlay-dark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(54, 40, 109, 0.85); z-index: 1; }
+        .glass-panel { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        
+        /* Conteneur principal de Euro Info */
+        .euro-container-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .euro-view-main {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .euro-view-detail {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            position: absolute;
+            top: 0;
+            left: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            z-index: 20;
+        }
+        
+        .euro-container-wrapper.show-detail .euro-view-main { transform: translateX(-100%); opacity: 0.5; }
+        .euro-container-wrapper.show-detail .euro-view-detail { transform: translateX(-100%); }
+
+        .content-scrollable { max-height: 90vh; overflow-y: auto; scrollbar-width: thin; width: 100%; max-width: 80rem; padding-right: 10px; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bubble-container">
+        <div class="bubble-wrapper" id="bubbleMenu">
+            <div class="menu-header" onclick="toggleMenu()">
+                <i class="fas fa-bars menu-icon" id="menuIcon"></i>
+                <span class="menu-title-text">Menu</span>
+            </div>
+            <div class="menu-links">
+                <a href="#home" class="nav-link">01. Accueil</a>
+                <a href="#about" class="nav-link">02. Mon Parcours</a>
+                <a href="#euroinfo" class="nav-link">03. L'Entreprise</a>
+                <a href="#portfolio" class="nav-link">04. Missions</a>
+                <a href="#veille" class="nav-link">05. Veille & Certifs</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="side-nav">
+        <a href="#home" class="nav-dot active" data-label="Accueil"></a>
+        <a href="#about" class="nav-dot" data-label="Mon Parcours"></a>
+        <a href="#euroinfo" class="nav-dot" data-label="Euro Info"></a>
+        <a href="#portfolio" class="nav-dot" data-label="Missions"></a>
+        <a href="#veille" class="nav-dot" data-label="Veille"></a>
+    </div>
+
+    <div class="snap-container" id="scrollContainer">
+
+        <section id="home" class="hero-bg text-white">
+            <div class="text-center px-4 max-w-4xl mx-auto z-10 reveal-element">
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tight">
+                    Romain <span class="text-[#E9530D]">Pereira</span>
+                </h1>
+                <p class="text-2xl md:text-3xl font-light mb-10">
+                    Futur Administrateur Systèmes & Réseaux<br>
+                    <span class="text-gray-300 text-xl">BTS SIO - SISR</span>
+                </p>
+                <div class="animate-bounce mt-10 cursor-pointer" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-chevron-down text-3xl opacity-50"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="bg-white">
+            <div class="max-w-6xl mx-auto px-6 w-full">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                    
+                    <div class="relative mb-10 lg:mb-0 group flex justify-center reveal-element">
+                        <div class="w-80 h-80 rounded-full bg-slate-100 border-4 border-[#36286D] flex items-center justify-center relative shadow-2xl">
+                            <i class="fas fa-user-graduate text-9xl text-[#36286D] opacity-20"></i>
+                            <div class="absolute -bottom-4 -right-4 bg-[#E9530D] text-white p-4 rounded-full shadow-lg font-bold text-lg">
+                                2024
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reveal-element delay-200">
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-[#36286D] mb-6">
+                            De la littérature aux <span class="text-[#E9530D]">réseaux</span>
+                        </h2>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            Mon parcours est atypique. Titulaire d'un <strong>Bac Littéraire</strong> et ancien étudiant en droit, j'ai décidé d'opérer un virage complet vers l'informatique. C'est une passion pour la logique et la résolution de problèmes qui a guidé cette reconversion.
+                        </p>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            Depuis septembre 2024, je suis étudiant en <strong>BTS SIO option SISR</strong> au lycée Henri-Wallon. J'ai eu la chance d'intégrer Euro Info, qui a su voir au-delà de mon CV pour miser sur ma motivation.
+                        </p>
+                        <div class="bg-slate-50 border-l-4 border-[#36286D] p-5 italic text-gray-600 rounded-r-lg mb-8 shadow-sm">
+                            "Mes débuts étaient complexes, mais j'ai à cœur de montrer que croire en moi était le bon choix."
+                        </div>
+                        
+                        <div class="flex gap-4 items-center">
+                            <a href="#" class="bg-[#36286D] text-white px-6 py-3 rounded-full font-bold hover:bg-[#2a1f55] transition shadow-lg">
+                                <i class="fas fa-file-alt mr-2"></i> Voir mon CV
+                            </a>
+                            <a href="https://www.linkedin.com/in/romain-pereira" target="_blank" class="text-[#36286D] hover:text-[#E9530D] transition text-3xl ml-4">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="euroinfo" class="text-white">
+            <video autoplay muted loop playsinline class="video-bg">
+                <source src="fondvideo.mp4" type="video/mp4">
+            </video>
+            <div class="overlay-dark"></div>
+
+            <div class="euro-container-wrapper z-10" id="euroWrapper">
+                
+                <div class="euro-view-main">
+                    <div class="content-scrollable">
+                        <div class="flex items-center gap-4 mb-8 border-b border-white/20 pb-4 reveal-element">
+                            <img src="eurologo.png" class="h-12 bg-white p-2 rounded" alt="Logo">
+                            <div>
+                                <h2 class="text-3xl font-bold">L'Entreprise</h2>
+                                <p class="text-[#E9530D] font-bold text-sm">Mon environnement d'alternance</p>
+                            </div>
+                        </div>
+
+                        <div class="grid lg:grid-cols-2 gap-10 mb-12">
+                            <div class="glass-panel p-6 rounded-xl reveal-element delay-100">
+                                <h3 class="text-xl font-bold mb-3 text-[#E9530D]">Histoire</h3>
+                                <p class="text-sm text-gray-200 leading-relaxed mb-4">
+                                    Fondée en 1996, Euro Info a évolué pour répondre aux besoins croissants des professionnels. D'abord axée sur le hardware, l'entreprise a pris un tournant décisif en <strong>2018</strong>.
+                                </p>
+                                <div class="grid grid-cols-4 gap-2 text-center border-t border-white/10 pt-4">
+                                    <div><div class="text-xl font-bold text-[#E9530D]">35</div><div class="text-[10px] uppercase">Salariés</div></div>
+                                    <div><div class="text-xl font-bold text-[#E9530D]">29</div><div class="text-[10px] uppercase">Ans</div></div>
+                                    <div><div class="text-xl font-bold text-[#E9530D]">3</div><div class="text-[10px] uppercase">Agences</div></div>
+                                    <div><div class="text-xl font-bold text-[#E9530D]">8M€</div><div class="text-[10px] uppercase">CA</div></div>
+                                </div>
+                            </div>
+
+                            <div class="glass-panel p-6 rounded-xl reveal-element delay-200">
+                                <h3 class="text-xl font-bold mb-3 text-[#E9530D]">Expertises</h3>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-white/5 p-3 rounded hover:bg-white/10 transition">
+                                        <i class="fas fa-server text-[#E9530D] mb-2"></i>
+                                        <h4 class="font-bold text-sm">Infogérance</h4>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded hover:bg-white/10 transition">
+                                        <i class="fas fa-shield-alt text-[#E9530D] mb-2"></i>
+                                        <h4 class="font-bold text-sm">Cybersécurité</h4>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded hover:bg-white/10 transition">
+                                        <i class="fas fa-cloud text-[#E9530D] mb-2"></i>
+                                        <h4 class="font-bold text-sm">Cloud</h4>
+                                    </div>
+                                    <div class="bg-white/5 p-3 rounded hover:bg-white/10 transition">
+                                        <i class="fas fa-phone text-[#E9530D] mb-2"></i>
+                                        <h4 class="font-bold text-sm">Télécoms</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-panel p-6 rounded-xl reveal-element delay-300">
+                            <h3 class="text-xl font-bold mb-4 text-[#E9530D]">Équipe & Organisation</h3>
+                            <p class="text-xs text-gray-300 mb-4"><i class="fas fa-hand-pointer mr-1"></i> Cliquez sur les cartes pour voir en plein écran.</p>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div class="group relative cursor-pointer" onclick="slideInImage('Organigramme.jpg', 'Structure & Organisation')">
+                                    <p class="text-sm mb-2 font-bold flex items-center gap-2">Organigramme <i class="fas fa-chevron-right text-[#E9530D] text-xs"></i></p>
+                                    <div class="overflow-hidden rounded-lg border border-white/20 relative shadow-lg">
+                                        <div class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition z-10"></div>
+                                        <i class="fas fa-arrow-right absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-4xl drop-shadow-lg"></i>
+                                        <img src="Organigramme.jpg" class="w-full h-56 md:h-64 object-cover object-top group-hover:scale-105 transition duration-500">
+                                    </div>
+                                </div>
+                                
+                                <div class="group relative cursor-pointer" onclick="slideInImage('Trombinoscope.jpg', 'Notre Équipe')">
+                                    <p class="text-sm mb-2 font-bold flex items-center gap-2">L'Équipe <i class="fas fa-chevron-right text-[#E9530D] text-xs"></i></p>
+                                    <div class="overflow-hidden rounded-lg border border-white/20 relative shadow-lg">
+                                        <div class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition z-10"></div>
+                                        <i class="fas fa-arrow-right absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-4xl drop-shadow-lg"></i>
+                                        <img src="Trombinoscope.jpg" class="w-full h-56 md:h-64 object-cover object-top group-hover:scale-105 transition duration-500">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="euro-view-detail">
+                    <div class="glass-panel w-full h-full max-h-[90vh] max-w-7xl rounded-xl flex flex-col p-6 shadow-2xl relative">
+                        <div class="flex justify-between items-center mb-6 border-b border-white/20 pb-4">
+                            <button onclick="slideOutImage()" class="flex items-center gap-2 text-white hover:text-[#E9530D] transition font-bold uppercase text-sm tracking-widest">
+                                <i class="fas fa-arrow-left"></i> Retour
+                            </button>
+                            <h3 id="detailTitle" class="text-xl font-bold text-[#E9530D]">Titre Image</h3>
+                        </div>
+                        <div class="flex-grow overflow-hidden rounded bg-black/20 flex items-center justify-center relative">
+                             <img id="detailImage" src="" class="max-w-full max-h-full object-contain shadow-lg" alt="Vue Détail">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="portfolio" class="bg-slate-50">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="text-center mb-12 reveal-element">
+                    <span class="text-[#E9530D] font-bold uppercase tracking-widest text-sm">SISR - Bloc 1</span>
+                    <h2 class="text-4xl font-extrabold text-[#36286D] mt-2">Mes Missions Principales</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#E9530D] hover:-translate-y-2 transition duration-300 reveal-element delay-100">
+                        <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center text-[#E9530D] text-2xl mb-6">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#36286D] mb-3">Ticketing & Support</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            Prise en charge des demandes utilisateurs via l'outil de télémaintenance. Diagnostic et résolution d'incidents logiciels et matériels (Niveau 1 & 2).
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#36286D] hover:-translate-y-2 transition duration-300 reveal-element delay-200">
+                        <div class="bg-purple-50 w-16 h-16 rounded-full flex items-center justify-center text-[#36286D] text-2xl mb-6">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#36286D] mb-3">Parc & Stock</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            Réorganisation complète du stock et mise à jour des inventaires. Gestion du matériel "dormant", optimisation des entrées/sorties et traçabilité.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#E9530D] hover:-translate-y-2 transition duration-300 reveal-element delay-300">
+                        <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center text-[#E9530D] text-2xl mb-6">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-[#36286D] mb-3">Migration Données</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            Transfert sécurisé de données sensibles vers un nouveau système centralisé. Vérification de l'intégrité et sécurisation des accès (NTFS/Partages).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="veille" class="bg-white">
+            <div class="max-w-6xl mx-auto px-6 w-full flex flex-col justify-center h-full">
+                <div class="grid md:grid-cols-2 gap-12 items-center flex-grow">
+                    <div class="reveal-element">
+                        <h2 class="text-3xl font-bold text-[#36286D] mb-8">Veille Technologique</h2>
+                        <div class="bg-white border-l-4 border-[#E9530D] pl-6 py-4 shadow-sm mb-8">
+                            <p class="text-gray-600 italic">"L'informatique évolue chaque jour, rester à jour n'est pas une option mais une nécessité."</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 group cursor-pointer">
+                                <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-[#0077b5] group-hover:text-white transition text-[#36286D]">
+                                    <i class="fab fa-linkedin text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Flux Experts IT</h4>
+                                    <p class="text-xs text-gray-500">Suivi quotidien</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 group cursor-pointer">
+                                <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-[#E9530D] group-hover:text-white transition text-[#E9530D]">
+                                    <i class="fas fa-shield-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">ANSSI / CERT-FR</h4>
+                                    <p class="text-xs text-gray-500">Alertes Vulnérabilités</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 p-8 rounded-2xl shadow-inner reveal-element delay-200">
+                        <h2 class="text-3xl font-bold text-[#36286D] mb-8">Certifications</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <i class="fas fa-check-circle text-green-500 text-2xl mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">SecNumAcadémie</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Agence nationale de la sécurité des systèmes d'information (ANSSI)</p>
+                                    <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Validé</span>
+                                </div>
+                            </div>
+                            <hr class="border-gray-200">
+                            <div class="flex items-start gap-4">
+                                <i class="fas fa-spinner fa-spin text-orange-500 text-2xl mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg text-gray-800">Microsoft Fundamentals</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Principes de base Azure & M365</p>
+                                    <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">En préparation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="text-center py-6 text-gray-400 text-xs mt-10">
+                    <p>© 2026 Romain Pereira - Portfolio BTS SIO</p>
+                </footer>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // --- 1. Menu Toggle Logic (Auto Open) ---
+        function toggleMenu() {
+            document.getElementById('bubbleMenu').classList.toggle('open');
+        }
+        
+        // --- 2. Sliding Animation Logic (Euro Info) ---
+        const euroWrapper = document.getElementById('euroWrapper');
+        const detailImage = document.getElementById('detailImage');
+        const detailTitle = document.getElementById('detailTitle');
+
+        function slideInImage(src, title) {
+            detailImage.src = src;
+            detailTitle.innerText = title;
+            euroWrapper.classList.add('show-detail');
+        }
+
+        function slideOutImage() {
+            euroWrapper.classList.remove('show-detail');
+        }
+
+        // --- 3. Scroll Logic (Navigation + Animations + Auto Menu) ---
+        const scrollContainer = document.getElementById('scrollContainer');
+        const dots = document.querySelectorAll('.nav-dot');
+        const sections = document.querySelectorAll('section');
+        const bubbleMenu = document.getElementById('bubbleMenu');
+
+        // Observer pour les animations d'arrivée
+        const observerOptions = {
+            root: scrollContainer,
+            threshold: 0.2 // Déclenche quand 20% de l'élément est visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-element').forEach(el => observer.observe(el));
+
+
+        scrollContainer.addEventListener('scroll', () => {
+            let current = '';
+            
+            // Détection Section Active
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollContainer.scrollTop >= (sectionTop - section.clientHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            // Mise à jour des points
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.getAttribute('href').includes(current)) {
+                    dot.classList.add('active');
+                }
+            });
+
+            // LOGIQUE MENU AUTOMATIQUE
+            // Si on est sur 'home', on ferme. Sinon, on ouvre.
+            if (current === 'home') {
+                bubbleMenu.classList.remove('open');
+            } else {
+                bubbleMenu.classList.add('open');
+            }
+        });
+    </script>
+</body>
+</html>
