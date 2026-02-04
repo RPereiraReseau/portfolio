@@ -30,7 +30,7 @@
             overflow: hidden;
         }
 
-        /* --- ANIMATIONS D'ENTRÉE (ARRIVÉE LÉGÈRE) --- */
+        /* --- ANIMATIONS D'ENTRÉE --- */
         .reveal-element {
             opacity: 0;
             transform: translateY(30px);
@@ -42,13 +42,11 @@
             transform: translateY(0);
         }
 
-        /* Délais pour effet cascade */
         .delay-100 { transition-delay: 0.1s; }
         .delay-200 { transition-delay: 0.2s; }
         .delay-300 { transition-delay: 0.3s; }
 
-
-        /* --- NAVIGATION POINTS (DROITE) --- */
+        /* --- NAVIGATION POINTS --- */
         .side-nav {
             position: fixed;
             right: 30px;
@@ -90,8 +88,7 @@
         }
         .nav-dot:hover::after { opacity: 1; transform: translateY(-50%) translateX(-5px); }
 
-
-        /* --- MENU BULLE (GAUCHE - AUTO OPEN) --- */
+        /* --- MENU BULLE --- */
         .nav-bubble-container {
             position: fixed;
             top: 30px;
@@ -105,13 +102,12 @@
             width: 60px;
             height: 60px;
             overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* Effet ressort */
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 4px 15px rgba(233, 83, 13, 0.4);
             display: flex;
             flex-direction: column;
         }
 
-        /* État Ouvert */
         .bubble-wrapper.open {
             width: 220px;
             height: 320px;
@@ -177,14 +173,12 @@
         .bubble-wrapper.open .nav-link { transform: translateX(0); }
         .nav-link:hover { color: #E9530D; padding-left: 5px; }
 
-
         /* --- SECTIONS STYLES --- */
         .hero-bg { background: linear-gradient(135deg, #36286D 0%, #2a1f55 50%, #E9530D 100%); }
         .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
         .overlay-dark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(54, 40, 109, 0.85); z-index: 1; }
         .glass-panel { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
         
-        /* Conteneur principal de Euro Info */
         .euro-container-wrapper {
             width: 100%;
             height: 100%;
@@ -227,7 +221,6 @@
 
         .content-scrollable { max-height: 90vh; overflow-y: auto; scrollbar-width: thin; width: 100%; max-width: 80rem; padding-right: 10px; }
 
-        /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 3px; }
@@ -246,7 +239,7 @@
                 <a href="#about" class="nav-link">02. Mon Parcours</a>
                 <a href="#euroinfo" class="nav-link">03. L'Entreprise</a>
                 <a href="#portfolio" class="nav-link">04. Missions</a>
-                <a href="#veille" class="nav-link">05. Veille & Certifs</a>
+                <a href="#certifications" class="nav-link">05. Certifications</a>
             </div>
         </div>
     </div>
@@ -256,7 +249,7 @@
         <a href="#about" class="nav-dot" data-label="Mon Parcours"></a>
         <a href="#euroinfo" class="nav-dot" data-label="Euro Info"></a>
         <a href="#portfolio" class="nav-dot" data-label="Missions"></a>
-        <a href="#veille" class="nav-dot" data-label="Veille"></a>
+        <a href="#certifications" class="nav-dot" data-label="Certifications"></a>
     </div>
 
     <div class="snap-container" id="scrollContainer">
@@ -279,20 +272,14 @@
         <section id="about" class="bg-white">
             <div class="max-w-6xl mx-auto px-6 w-full">
                 <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-                    
                     <div class="relative mb-10 lg:mb-0 group flex justify-center reveal-element">
                         <div class="w-80 h-80 rounded-full bg-slate-100 border-4 border-[#36286D] flex items-center justify-center relative shadow-2xl">
                             <i class="fas fa-user-graduate text-9xl text-[#36286D] opacity-20"></i>
-                            <div class="absolute -bottom-4 -right-4 bg-[#E9530D] text-white p-4 rounded-full shadow-lg font-bold text-lg">
-                                2024
-                            </div>
+                            <div class="absolute -bottom-4 -right-4 bg-[#E9530D] text-white p-4 rounded-full shadow-lg font-bold text-lg">2024</div>
                         </div>
                     </div>
-                    
                     <div class="reveal-element delay-200">
-                        <h2 class="text-3xl md:text-4xl font-extrabold text-[#36286D] mb-6">
-                            De la littérature aux <span class="text-[#E9530D]">réseaux</span>
-                        </h2>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-[#36286D] mb-6">De la littérature aux <span class="text-[#E9530D]">réseaux</span></h2>
                         <p class="text-lg text-gray-600 mb-6 leading-relaxed">
                             Mon parcours est atypique. Titulaire d'un <strong>Bac Littéraire</strong> et ancien étudiant en droit, j'ai décidé d'opérer un virage complet vers l'informatique. C'est une passion pour la logique et la résolution de problèmes qui a guidé cette reconversion.
                         </p>
@@ -302,7 +289,6 @@
                         <div class="bg-slate-50 border-l-4 border-[#36286D] p-5 italic text-gray-600 rounded-r-lg mb-8 shadow-sm">
                             "Mes débuts étaient complexes, mais j'ai à cœur de montrer que croire en moi était le bon choix."
                         </div>
-                        
                         <div class="flex gap-4 items-center">
                             <a href="#" class="bg-[#36286D] text-white px-6 py-3 rounded-full font-bold hover:bg-[#2a1f55] transition shadow-lg">
                                 <i class="fas fa-file-alt mr-2"></i> Voir mon CV
@@ -323,7 +309,6 @@
             <div class="overlay-dark"></div>
 
             <div class="euro-container-wrapper z-10" id="euroWrapper">
-                
                 <div class="euro-view-main">
                     <div class="content-scrollable">
                         <div class="flex items-center gap-4 mb-8 border-b border-white/20 pb-4 reveal-element">
@@ -384,7 +369,6 @@
                                         <img src="Organigramme.jpg" class="w-full h-56 md:h-64 object-cover object-top group-hover:scale-105 transition duration-500">
                                     </div>
                                 </div>
-                                
                                 <div class="group relative cursor-pointer" onclick="slideInImage('Trombinoscope.jpg', 'Notre Équipe')">
                                     <p class="text-sm mb-2 font-bold flex items-center gap-2">L'Équipe <i class="fas fa-chevron-right text-[#E9530D] text-xs"></i></p>
                                     <div class="overflow-hidden rounded-lg border border-white/20 relative shadow-lg">
@@ -401,9 +385,7 @@
                 <div class="euro-view-detail">
                     <div class="glass-panel w-full h-full max-h-[90vh] max-w-7xl rounded-xl flex flex-col p-6 shadow-2xl relative">
                         <div class="flex justify-between items-center mb-6 border-b border-white/20 pb-4">
-                            <button onclick="slideOutImage()" class="flex items-center gap-2 text-white hover:text-[#E9530D] transition font-bold uppercase text-sm tracking-widest">
-                                <i class="fas fa-arrow-left"></i> Retour
-                            </button>
+                            <button onclick="slideOutImage()" class="flex items-center gap-2 text-white hover:text-[#E9530D] transition font-bold uppercase text-sm tracking-widest"><i class="fas fa-arrow-left"></i> Retour</button>
                             <h3 id="detailTitle" class="text-xl font-bold text-[#E9530D]">Titre Image</h3>
                         </div>
                         <div class="flex-grow overflow-hidden rounded bg-black/20 flex items-center justify-center relative">
@@ -411,7 +393,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -421,96 +402,68 @@
                     <span class="text-[#E9530D] font-bold uppercase tracking-widest text-sm">SISR - Bloc 1</span>
                     <h2 class="text-4xl font-extrabold text-[#36286D] mt-2">Mes Missions Principales</h2>
                 </div>
-                
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#E9530D] hover:-translate-y-2 transition duration-300 reveal-element delay-100">
-                        <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center text-[#E9530D] text-2xl mb-6">
-                            <i class="fas fa-ticket-alt"></i>
-                        </div>
+                        <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center text-[#E9530D] text-2xl mb-6"><i class="fas fa-ticket-alt"></i></div>
                         <h3 class="text-xl font-bold text-[#36286D] mb-3">Ticketing & Support</h3>
-                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-                            Prise en charge des demandes utilisateurs via l'outil de télémaintenance. Diagnostic et résolution d'incidents logiciels et matériels (Niveau 1 & 2).
-                        </p>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">Prise en charge des demandes utilisateurs via l'outil de télémaintenance. Diagnostic et résolution d'incidents logiciels et matériels (Niveau 1 & 2).</p>
                     </div>
-
                     <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#36286D] hover:-translate-y-2 transition duration-300 reveal-element delay-200">
-                        <div class="bg-purple-50 w-16 h-16 rounded-full flex items-center justify-center text-[#36286D] text-2xl mb-6">
-                            <i class="fas fa-boxes"></i>
-                        </div>
+                        <div class="bg-purple-50 w-16 h-16 rounded-full flex items-center justify-center text-[#36286D] text-2xl mb-6"><i class="fas fa-boxes"></i></div>
                         <h3 class="text-xl font-bold text-[#36286D] mb-3">Parc & Stock</h3>
-                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-                            Réorganisation complète du stock et mise à jour des inventaires. Gestion du matériel "dormant", optimisation des entrées/sorties et traçabilité.
-                        </p>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">Réorganisation complète du stock et mise à jour des inventaires. Gestion du matériel "dormant", optimisation des entrées/sorties et traçabilité.</p>
                     </div>
-
                     <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#E9530D] hover:-translate-y-2 transition duration-300 reveal-element delay-300">
-                        <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center text-[#E9530D] text-2xl mb-6">
-                            <i class="fas fa-database"></i>
-                        </div>
+                        <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center text-[#E9530D] text-2xl mb-6"><i class="fas fa-database"></i></div>
                         <h3 class="text-xl font-bold text-[#36286D] mb-3">Migration Données</h3>
-                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
-                            Transfert sécurisé de données sensibles vers un nouveau système centralisé. Vérification de l'intégrité et sécurisation des accès (NTFS/Partages).
-                        </p>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">Transfert sécurisé de données sensibles vers un nouveau système centralisé. Vérification de l'intégrité et sécurisation des accès (NTFS/Partages).</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="veille" class="bg-white">
-            <div class="max-w-6xl mx-auto px-6 w-full flex flex-col justify-center h-full">
-                <div class="grid md:grid-cols-2 gap-12 items-center flex-grow">
-                    <div class="reveal-element">
-                        <h2 class="text-3xl font-bold text-[#36286D] mb-8">Veille Technologique</h2>
-                        <div class="bg-white border-l-4 border-[#E9530D] pl-6 py-4 shadow-sm mb-8">
-                            <p class="text-gray-600 italic">"L'informatique évolue chaque jour, rester à jour n'est pas une option mais une nécessité."</p>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4 group cursor-pointer">
-                                <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-[#0077b5] group-hover:text-white transition text-[#36286D]">
-                                    <i class="fab fa-linkedin text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Flux Experts IT</h4>
-                                    <p class="text-xs text-gray-500">Suivi quotidien</p>
-                                </div>
+        <section id="certifications" class="bg-white">
+            <div class="max-w-6xl mx-auto px-6 w-full py-12">
+                <div class="reveal-element">
+                    <h2 class="text-4xl font-extrabold text-[#36286D] mb-12 text-center">Certifications & Diplômes</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border-l-4 border-green-500 flex flex-col md:flex-row gap-6 items-center">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-xl text-gray-800">SecNumAcadémie</h4>
+                                <p class="text-sm text-gray-600 mb-4">ANSSI - Cybersécurité</p>
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Obtenu</span>
                             </div>
-                            <div class="flex items-center gap-4 group cursor-pointer">
-                                <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center group-hover:bg-[#E9530D] group-hover:text-white transition text-[#E9530D]">
-                                    <i class="fas fa-shield-alt text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">ANSSI / CERT-FR</h4>
-                                    <p class="text-xs text-gray-500">Alertes Vulnérabilités</p>
-                                </div>
+                            <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer" onclick="slideInImage('diplome-secnum.jpg', 'Diplôme SecNumAcadémie')">
+                                <span class="text-[10px] text-gray-400">Photo diplôme</span>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="bg-slate-50 p-8 rounded-2xl shadow-inner reveal-element delay-200">
-                        <h2 class="text-3xl font-bold text-[#36286D] mb-8">Certifications</h2>
-                        <div class="space-y-6">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-check-circle text-green-500 text-2xl mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800">SecNumAcadémie</h4>
-                                    <p class="text-sm text-gray-600 mb-1">Agence nationale de la sécurité des systèmes d'information (ANSSI)</p>
-                                    <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Validé</span>
-                                </div>
+                        <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border-l-4 border-[#36286D] flex flex-col md:flex-row gap-6 items-center">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-xl text-gray-800">Certification Pix</h4>
+                                <p class="text-sm text-gray-600 mb-4">Compétences Numériques</p>
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Obtenu</span>
                             </div>
-                            <hr class="border-gray-200">
-                            <div class="flex items-start gap-4">
-                                <i class="fas fa-spinner fa-spin text-orange-500 text-2xl mt-1"></i>
-                                <div>
-                                    <h4 class="font-bold text-lg text-gray-800">Microsoft Fundamentals</h4>
-                                    <p class="text-sm text-gray-600 mb-1">Principes de base Azure & M365</p>
-                                    <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">En préparation</span>
-                                </div>
+                            <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer" onclick="slideInImage('diplome-pix.jpg', 'Certification Pix')">
+                                <span class="text-[10px] text-gray-400">Photo diplôme</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 flex flex-col md:flex-row gap-6 items-center">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-xl text-gray-800">Microsoft MS-900</h4>
+                                <p class="text-sm text-gray-600 mb-4">M365 Fundamentals</p>
+                                <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold uppercase">En cours</span>
+                            </div>
+                            <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer">
+                                <span class="text-[10px] text-gray-400">En attente</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <footer class="text-center py-6 text-gray-400 text-xs mt-10">
+                <footer class="text-center py-6 text-gray-400 text-xs mt-12">
                     <p>© 2026 Romain Pereira - Portfolio BTS SIO</p>
                 </footer>
             </div>
@@ -519,12 +472,8 @@
     </div>
 
     <script>
-        // --- 1. Menu Toggle Logic (Auto Open) ---
-        function toggleMenu() {
-            document.getElementById('bubbleMenu').classList.toggle('open');
-        }
+        function toggleMenu() { document.getElementById('bubbleMenu').classList.toggle('open'); }
         
-        // --- 2. Sliding Animation Logic (Euro Info) ---
         const euroWrapper = document.getElementById('euroWrapper');
         const detailImage = document.getElementById('detailImage');
         const detailTitle = document.getElementById('detailTitle');
@@ -535,59 +484,30 @@
             euroWrapper.classList.add('show-detail');
         }
 
-        function slideOutImage() {
-            euroWrapper.classList.remove('show-detail');
-        }
+        function slideOutImage() { euroWrapper.classList.remove('show-detail'); }
 
-        // --- 3. Scroll Logic (Navigation + Animations + Auto Menu) ---
         const scrollContainer = document.getElementById('scrollContainer');
         const dots = document.querySelectorAll('.nav-dot');
         const sections = document.querySelectorAll('section');
         const bubbleMenu = document.getElementById('bubbleMenu');
 
-        // Observer pour les animations d'arrivée
-        const observerOptions = {
-            root: scrollContainer,
-            threshold: 0.2 // Déclenche quand 20% de l'élément est visible
-        };
-
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { root: scrollContainer, threshold: 0.2 });
 
         document.querySelectorAll('.reveal-element').forEach(el => observer.observe(el));
 
-
         scrollContainer.addEventListener('scroll', () => {
             let current = '';
-            
-            // Détection Section Active
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollContainer.scrollTop >= (sectionTop - section.clientHeight / 3)) {
-                    current = section.getAttribute('id');
-                }
+                if (scrollContainer.scrollTop >= (section.offsetTop - section.clientHeight / 3)) current = section.getAttribute('id');
             });
-
-            // Mise à jour des points
             dots.forEach(dot => {
                 dot.classList.remove('active');
-                if (dot.getAttribute('href').includes(current)) {
-                    dot.classList.add('active');
-                }
+                if (dot.getAttribute('href').includes(current)) dot.classList.add('active');
             });
-
-            // LOGIQUE MENU AUTOMATIQUE
-            // Si on est sur 'home', on ferme. Sinon, on ouvre.
-            if (current === 'home') {
-                bubbleMenu.classList.remove('open');
-            } else {
-                bubbleMenu.classList.add('open');
-            }
+            if (current === 'home') bubbleMenu.classList.remove('open');
+            else bubbleMenu.classList.add('open');
         });
     </script>
 </body>
