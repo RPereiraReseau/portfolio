@@ -340,8 +340,8 @@
                     
                     <div class="relative mb-10 lg:mb-0 group flex flex-col items-center justify-center reveal-element">
                         <div class="w-80 h-80 rounded-full bg-slate-100 border-4 border-[#36286D] flex items-center justify-center relative shadow-2xl mb-8">
-                            <i class="fas fa-user-graduate text-9xl text-[#36286D] opacity-20"></i>
-                            <div class="absolute -bottom-4 -right-4 bg-[#E9530D] text-white p-4 rounded-full shadow-lg font-bold text-lg">2024</div>
+                            <img src="Romain.png" alt="Romain Pereira" class="w-full h-full object-cover rounded-full">
+                            <div class="absolute -bottom-4 -right-4 bg-[#E9530D] text-white p-4 rounded-full shadow-lg font-bold text-lg z-10">2024</div>
                         </div>
 
                         <div class="w-full max-w-xs text-center">
@@ -399,7 +399,7 @@
                             <a href="#" class="bg-[#36286D] text-white px-6 py-3 rounded-full font-bold hover:bg-[#2a1f55] transition shadow-lg">
                                 <i class="fas fa-file-alt mr-2"></i> Voir mon CV
                             </a>
-                            <a href="https://www.linkedin.com/in/romain-pereira" target="_blank" class="text-[#36286D] hover:text-[#E9530D] transition text-3xl ml-4">
+                            <a href="https://www.linkedin.com/in/romain-pereira-de-andrade-79b4643a7/" target="_blank" class="text-[#36286D] hover:text-[#E9530D] transition text-3xl ml-4">
                                 <i class="fab fa-linkedin"></i>
                             </a>
                         </div>
@@ -576,8 +576,8 @@
                                         <p class="text-sm text-gray-600 mb-4">Compétences Numériques</p>
                                         <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Obtenu</span>
                                     </div>
-                                    <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer" onclick="showCert('diplome-pix.jpg', 'Certification Pix')">
-                                        <span class="text-[10px] text-gray-400">Photo diplôme</span>
+                                    <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer" onclick="showCert('pix.png', 'Certification Pix')">
+                                        <img src="pix.png" alt="Miniature Pix" class="w-full h-full object-cover">
                                     </div>
                                 </div>
 
@@ -619,7 +619,7 @@
                     <a href="mailto:romainp.professionnel@gmail.com" class="flex-grow bg-[#E9530D] text-white px-8 py-4 rounded-full font-bold hover:bg-[#d04a0c] transition shadow-lg text-lg flex justify-center items-center gap-3">
                         <i class="fas fa-paper-plane"></i> M'envoyer un email
                     </a>
-                    <a href="https://www.linkedin.com/in/romain-pereira" target="_blank" class="flex-none w-[60px] h-[60px] bg-transparent border-2 border-white text-white rounded-full flex justify-center items-center hover:bg-white hover:text-[#36286D] transition shadow-lg text-2xl" title="Profil LinkedIn">
+                    <a href="https://www.linkedin.com/in/romain-pereira-de-andrade-79b4643a7/" target="_blank" class="flex-none w-[60px] h-[60px] bg-transparent border-2 border-white text-white rounded-full flex justify-center items-center hover:bg-white hover:text-[#36286D] transition shadow-lg text-2xl" title="Profil LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </div>
@@ -745,7 +745,16 @@
             },
             'migration': { 
                 title: 'Migration Données', 
-                content: 'Informations complémentaires sur les méthodologies de transfert des données, la préparation des serveurs cibles, la sécurisation des partages réseaux et la vérification des droits d\'accès post-migration.' 
+                content: `
+                    <div class="space-y-4">
+                        <p>Afin de sécuriser les données de nos clients, nous avons entamé depuis 2024 une transition complète de ces dernières d'un serveur interne vers un coffre-fort numérique <strong>Keeper</strong>.</p>
+                        <p>Cette transition s'effectue progressivement, en supplément du travail général. Nous tenons donc un suivi rigoureux de l'évolution de cette transition afin de ne perdre ou corrompre aucune donnée.</p>
+                        <div class="bg-slate-50 p-4 rounded-lg border-l-4 border-[#E9530D] mt-4">
+                            <h4 class="font-bold text-[#36286D] text-sm mb-1"><i class="fas fa-lock text-[#E9530D] mr-2"></i> Solution Keeper</h4>
+                            <p class="text-xs">Keeper est un gestionnaire de mots de passe et un coffre-fort numérique d'entreprise ultra-sécurisé. Il s'appuie sur une architecture et un chiffrement de bout en bout (Zero-Knowledge) pour protéger, centraliser et partager les identifiants et données sensibles en toute sécurité.</p>
+                        </div>
+                    </div>
+                ` 
             }
         };
 
