@@ -10,7 +10,58 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         
         :root { --primary: #E9530D; --secondary: #36286D; }
-        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow: hidden; background-color: #f8fafc; color: #333; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; overflow: hidden; background-color: #f8fafc; color: #333; transition: background-color 0.3s, color 0.3s; }
+
+        /* --- DARK MODE STYLES --- */
+        body.dark-mode { background-color: #0f172a; color: #e2e8f0; }
+        
+        /* Inversion des fonds blancs et gris */
+        body.dark-mode .bg-white { background-color: #1e293b !important; }
+        body.dark-mode .bg-slate-50 { background-color: #0f172a !important; border-color: #334155 !important; }
+        body.dark-mode .bg-slate-100 { background-color: #334155 !important; border-color: #475569 !important; }
+        
+        /* Adaptation des textes */
+        body.dark-mode .text-gray-600 { color: #94a3b8 !important; }
+        body.dark-mode .text-gray-800 { color: #f1f5f9 !important; }
+        /* Le violet foncé devient violet clair pour le contraste */
+        body.dark-mode .text-\[\#36286D\] { color: #a5b4fc !important; }
+        body.dark-mode .border-\[\#36286D\] { border-color: #a5b4fc !important; }
+        
+        /* Adaptation Menu Bulle en Dark Mode */
+        body.dark-mode .bubble-wrapper.open { background: #1e293b; color: #fff; }
+        body.dark-mode .bubble-wrapper.open .menu-header { color: #a5b4fc; border-color: #334155; }
+        body.dark-mode .nav-link { color: #cbd5e1; }
+        body.dark-mode .nav-link:hover { color: #E9530D; }
+
+        /* Adaptation Modale Dark Mode */
+        body.dark-mode #missionModalContent { background-color: #1e293b; border: 1px solid #334155; }
+        body.dark-mode #modalTitle { color: #a5b4fc; }
+        body.dark-mode #modalBody { color: #cbd5e1; }
+        body.dark-mode #modalBody h4 { color: #a5b4fc; border-color: #334155; }
+
+        /* Bouton Dark Mode Discret */
+        .theme-toggle {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            opacity: 0;
+            color: inherit;
+            pointer-events: none;
+            transition: opacity 0.3s, color 0.3s;
+        }
+        .bubble-wrapper.open .theme-toggle {
+            opacity: 0.6;
+            pointer-events: auto;
+        }
+        .bubble-wrapper.open .theme-toggle:hover {
+            opacity: 1;
+            color: #E9530D;
+        }
 
         /* --- SCROLL SNAP --- */
         .snap-container {
@@ -110,7 +161,7 @@
 
         .bubble-wrapper.open {
             width: 220px;
-            height: 320px;
+            height: 380px;
             border-radius: 20px;
             background: white;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
@@ -224,22 +275,34 @@
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 3px; }
+        
+        /* Personnalisation Scrollbar Modale */
+        #modalBody::-webkit-scrollbar { width: 4px; }
+        #modalBody::-webkit-scrollbar-track { background: transparent; }
+        #modalBody::-webkit-scrollbar-thumb { background: #E9530D; border-radius: 4px; }
     </style>
 </head>
 <body>
 
     <div class="nav-bubble-container">
         <div class="bubble-wrapper" id="bubbleMenu">
-            <div class="menu-header" onclick="toggleMenu()">
+            <div class="menu-header" onclick="toggleMenu(event)">
                 <i class="fas fa-bars menu-icon" id="menuIcon"></i>
                 <span class="menu-title-text">Menu</span>
+                
+                <button id="themeToggle" class="theme-toggle" onclick="toggleTheme(event)" title="Mode Sombre">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
             </div>
             <div class="menu-links">
                 <a href="#home" class="nav-link">01. Accueil</a>
                 <a href="#about" class="nav-link">02. Mon Parcours</a>
                 <a href="#euroinfo" class="nav-link">03. L'Entreprise</a>
                 <a href="#portfolio" class="nav-link">04. Missions</a>
-                <a href="#certifications" class="nav-link">05. Certifications</a>
+                <a href="#lab" class="nav-link">05. Mon Lab</a>
+                <a href="#certifications" class="nav-link">06. Certifications</a>
+                <a href="#contact" class="nav-link">07. Contact</a>
             </div>
         </div>
     </div>
@@ -249,7 +312,9 @@
         <a href="#about" class="nav-dot" data-label="Mon Parcours"></a>
         <a href="#euroinfo" class="nav-dot" data-label="Euro Info"></a>
         <a href="#portfolio" class="nav-dot" data-label="Missions"></a>
+        <a href="#lab" class="nav-dot" data-label="Mon Lab"></a>
         <a href="#certifications" class="nav-dot" data-label="Certifications"></a>
+        <a href="#contact" class="nav-dot" data-label="Contact"></a>
     </div>
 
     <div class="snap-container" id="scrollContainer">
@@ -272,23 +337,64 @@
         <section id="about" class="bg-white">
             <div class="max-w-6xl mx-auto px-6 w-full">
                 <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-                    <div class="relative mb-10 lg:mb-0 group flex justify-center reveal-element">
-                        <div class="w-80 h-80 rounded-full bg-slate-100 border-4 border-[#36286D] flex items-center justify-center relative shadow-2xl">
+                    
+                    <div class="relative mb-10 lg:mb-0 group flex flex-col items-center justify-center reveal-element">
+                        <div class="w-80 h-80 rounded-full bg-slate-100 border-4 border-[#36286D] flex items-center justify-center relative shadow-2xl mb-8">
                             <i class="fas fa-user-graduate text-9xl text-[#36286D] opacity-20"></i>
                             <div class="absolute -bottom-4 -right-4 bg-[#E9530D] text-white p-4 rounded-full shadow-lg font-bold text-lg">2024</div>
                         </div>
+
+                        <div class="w-full max-w-xs text-center">
+                            <h3 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest mb-3">Soft Skills</h3>
+                            <div class="flex flex-wrap justify-center gap-2">
+                                <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-xs text-[#36286D] font-medium shadow-sm">Adaptabilité</span>
+                                <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-xs text-[#36286D] font-medium shadow-sm">Rigueur</span>
+                                <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-xs text-[#36286D] font-medium shadow-sm">Curiosité</span>
+                                <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-xs text-[#36286D] font-medium shadow-sm">Esprit d'équipe</span>
+                                <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-full text-xs text-[#36286D] font-medium shadow-sm">Logique</span>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="reveal-element delay-200">
-                        <h2 class="text-3xl md:text-4xl font-extrabold text-[#36286D] mb-6">De la littérature aux <span class="text-[#E9530D]">réseaux</span></h2>
-                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-[#36286D] mb-5">De la littérature aux <span class="text-[#E9530D]">réseaux</span></h2>
+                        <p class="text-lg text-gray-600 mb-5 leading-relaxed">
                             Mon parcours est atypique. Titulaire d'un <strong>Bac Littéraire</strong> et ancien étudiant en droit, j'ai décidé d'opérer un virage complet vers l'informatique. C'est une passion pour la logique et la résolution de problèmes qui a guidé cette reconversion.
                         </p>
-                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        <p class="text-lg text-gray-600 mb-5 leading-relaxed">
                             Depuis septembre 2024, je suis étudiant en <strong>BTS SIO option SISR</strong> au lycée Henri-Wallon. J'ai eu la chance d'intégrer Euro Info, qui a su voir au-delà de mon CV pour miser sur ma motivation.
                         </p>
-                        <div class="bg-slate-50 border-l-4 border-[#36286D] p-5 italic text-gray-600 rounded-r-lg mb-8 shadow-sm">
+
+                        <div class="bg-slate-50 border-l-4 border-[#36286D] p-4 italic text-gray-600 rounded-r-lg mb-6 shadow-sm text-sm">
                             "Mes débuts étaient complexes, mais j'ai à cœur de montrer que croire en moi était le bon choix."
                         </div>
+
+                        <div class="mb-8">
+                            <h3 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest mb-3">Stack Technique</h3>
+                            <div class="flex items-center gap-4 text-[#36286D]">
+                                <div class="flex flex-col items-center gap-1 group">
+                                    <i class="fab fa-windows text-2xl group-hover:text-[#E9530D] transition"></i>
+                                    <span class="text-[10px] font-bold">Windows</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1 group">
+                                    <i class="fab fa-linux text-2xl group-hover:text-[#E9530D] transition"></i>
+                                    <span class="text-[10px] font-bold">Linux</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1 group">
+                                    <i class="fas fa-network-wired text-2xl group-hover:text-[#E9530D] transition"></i>
+                                    <span class="text-[10px] font-bold">Cisco</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1 group">
+                                    <i class="fas fa-server text-2xl group-hover:text-[#E9530D] transition"></i>
+                                    <span class="text-[10px] font-bold">VMware</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1 group">
+                                    <i class="fas fa-users-cog text-2xl group-hover:text-[#E9530D] transition"></i>
+                                    <span class="text-[10px] font-bold">AD/DNS</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="flex gap-4 items-center">
                             <a href="#" class="bg-[#36286D] text-white px-6 py-3 rounded-full font-bold hover:bg-[#2a1f55] transition shadow-lg">
                                 <i class="fas fa-file-alt mr-2"></i> Voir mon CV
@@ -301,7 +407,6 @@
                 </div>
             </div>
         </section>
-
         <section id="euroinfo" class="text-white">
             <video autoplay muted loop playsinline class="video-bg">
                 <source src="fondvideo.mp4" type="video/mp4">
@@ -402,78 +507,161 @@
                     <span class="text-[#E9530D] font-bold uppercase tracking-widest text-sm">SISR - Bloc 1</span>
                     <h2 class="text-4xl font-extrabold text-[#36286D] mt-2">Mes Missions Principales</h2>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#E9530D] hover:-translate-y-2 transition duration-300 reveal-element delay-100">
                         <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center text-[#E9530D] text-2xl mb-6"><i class="fas fa-ticket-alt"></i></div>
                         <h3 class="text-xl font-bold text-[#36286D] mb-3">Ticketing & Support</h3>
                         <p class="text-gray-600 mb-4 text-sm leading-relaxed">Prise en charge des demandes utilisateurs via l'outil de télémaintenance. Diagnostic et résolution d'incidents logiciels et matériels (Niveau 1 & 2).</p>
+                        <button onclick="openModal('ticketing')" class="text-[#E9530D] font-bold text-sm mt-2 hover:underline flex items-center gap-2 transition-all">En savoir plus <i class="fas fa-arrow-right text-xs"></i></button>
                     </div>
                     <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#36286D] hover:-translate-y-2 transition duration-300 reveal-element delay-200">
-                        <div class="bg-purple-50 w-16 h-16 rounded-full flex items-center justify-center text-[#36286D] text-2xl mb-6"><i class="fas fa-boxes"></i></div>
-                        <h3 class="text-xl font-bold text-[#36286D] mb-3">Parc & Stock</h3>
-                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">Réorganisation complète du stock et mise à jour des inventaires. Gestion du matériel "dormant", optimisation des entrées/sorties et traçabilité.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-[#E9530D] hover:-translate-y-2 transition duration-300 reveal-element delay-300">
-                        <div class="bg-orange-50 w-16 h-16 rounded-full flex items-center justify-center text-[#E9530D] text-2xl mb-6"><i class="fas fa-database"></i></div>
+                        <div class="bg-purple-50 w-16 h-16 rounded-full flex items-center justify-center text-[#36286D] text-2xl mb-6"><i class="fas fa-database"></i></div>
                         <h3 class="text-xl font-bold text-[#36286D] mb-3">Migration Données</h3>
                         <p class="text-gray-600 mb-4 text-sm leading-relaxed">Transfert sécurisé de données sensibles vers un nouveau système centralisé. Vérification de l'intégrité et sécurisation des accès (NTFS/Partages).</p>
+                        <button onclick="openModal('migration')" class="text-[#36286D] font-bold text-sm mt-2 hover:underline flex items-center gap-2 transition-all">En savoir plus <i class="fas fa-arrow-right text-xs"></i></button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="certifications" class="bg-white">
-            <div class="max-w-6xl mx-auto px-6 w-full py-12">
-                <div class="reveal-element">
-                    <h2 class="text-4xl font-extrabold text-[#36286D] mb-12 text-center">Certifications & Diplômes</h2>
-                    
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border-l-4 border-green-500 flex flex-col md:flex-row gap-6 items-center">
-                            <div class="flex-grow">
-                                <h4 class="font-bold text-xl text-gray-800">SecNumAcadémie</h4>
-                                <p class="text-sm text-gray-600 mb-4">ANSSI - Cybersécurité</p>
-                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Obtenu</span>
-                            </div>
-                            <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer" onclick="slideInImage('diplome-secnum.jpg', 'Diplôme SecNumAcadémie')">
-                                <span class="text-[10px] text-gray-400">Photo diplôme</span>
-                            </div>
-                        </div>
+        <section id="lab" class="bg-white">
+            <div class="max-w-7xl mx-auto px-6 w-full">
+                <div class="text-center mb-12 reveal-element">
+                    <h2 class="text-4xl font-extrabold text-[#36286D] mt-2">Mon Lab & Projets Persos</h2>
+                    <p class="text-[#E9530D] font-bold uppercase tracking-widest text-sm mt-3">L'informatique ne s'arrête pas à la sortie de l'entreprise.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-200 reveal-element delay-100">
+                        <div class="w-12 h-12 bg-[#36286D] text-white rounded-lg flex items-center justify-center text-xl mb-5 shadow-md"><i class="fas fa-hdd"></i></div>
+                        <h3 class="text-xl font-bold text-[#36286D] mb-3">Serveur TrueNAS</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">Mise en place d'un NAS maison pour le stockage centralisé, la redondance des données et la gestion avancée des pools de stockage.</p>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-200 reveal-element delay-200">
+                        <div class="w-12 h-12 bg-[#E9530D] text-white rounded-lg flex items-center justify-center text-xl mb-5 shadow-md"><i class="fas fa-shield-virus"></i></div>
+                        <h3 class="text-xl font-bold text-[#36286D] mb-3">DMZ & Sécurité</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">Configuration d'une zone démilitarisée (DMZ) pour isoler et sécuriser les services exposés vers l'extérieur de mon réseau domestique.</p>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-2xl shadow-sm border border-slate-200 reveal-element delay-300">
+                        <div class="w-12 h-12 bg-[#36286D] text-white rounded-lg flex items-center justify-center text-xl mb-5 shadow-md"><i class="fas fa-network-wired"></i></div>
+                        <h3 class="text-xl font-bold text-[#36286D] mb-3">Réseau Local</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">Déploiement et segmentation de mon infrastructure réseau personnelle, gestion du routage, DHCP, DNS et isolation des flux.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border-l-4 border-[#36286D] flex flex-col md:flex-row gap-6 items-center">
-                            <div class="flex-grow">
-                                <h4 class="font-bold text-xl text-gray-800">Certification Pix</h4>
-                                <p class="text-sm text-gray-600 mb-4">Compétences Numériques</p>
-                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Obtenu</span>
-                            </div>
-                            <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer" onclick="slideInImage('diplome-pix.jpg', 'Certification Pix')">
-                                <span class="text-[10px] text-gray-400">Photo diplôme</span>
-                            </div>
-                        </div>
+        <section id="certifications" class="bg-slate-50">
+            <div class="euro-container-wrapper" id="certWrapper">
+                
+                <div class="euro-view-main">
+                    <div class="max-w-6xl mx-auto px-6 w-full py-12">
+                        <div class="reveal-element">
+                            <h2 class="text-4xl font-extrabold text-[#36286D] mb-12 text-center">Certifications & Diplômes</h2>
+                            
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-green-500 flex flex-col md:flex-row gap-6 items-center">
+                                    <div class="flex-grow">
+                                        <h4 class="font-bold text-xl text-gray-800">SecNumAcadémie</h4>
+                                        <p class="text-sm text-gray-600 mb-4">ANSSI - Cybersécurité</p>
+                                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Obtenu</span>
+                                    </div>
+                                    <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer" onclick="showCert('diplome-secnum.jpg', 'Diplôme SecNumAcadémie')">
+                                        <span class="text-[10px] text-gray-400">Photo diplôme</span>
+                                    </div>
+                                </div>
 
-                        <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 flex flex-col md:flex-row gap-6 items-center">
-                            <div class="flex-grow">
-                                <h4 class="font-bold text-xl text-gray-800">Microsoft MS-900</h4>
-                                <p class="text-sm text-gray-600 mb-4">M365 Fundamentals</p>
-                                <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold uppercase">En cours</span>
-                            </div>
-                            <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer">
-                                <span class="text-[10px] text-gray-400">En attente</span>
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-[#36286D] flex flex-col md:flex-row gap-6 items-center">
+                                    <div class="flex-grow">
+                                        <h4 class="font-bold text-xl text-gray-800">Certification Pix</h4>
+                                        <p class="text-sm text-gray-600 mb-4">Compétences Numériques</p>
+                                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Obtenu</span>
+                                    </div>
+                                    <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer" onclick="showCert('diplome-pix.jpg', 'Certification Pix')">
+                                        <span class="text-[10px] text-gray-400">Photo diplôme</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 flex flex-col md:flex-row gap-6 items-center">
+                                    <div class="flex-grow">
+                                        <h4 class="font-bold text-xl text-gray-800">Microsoft MS-900</h4>
+                                        <p class="text-sm text-gray-600 mb-4">M365 Fundamentals</p>
+                                        <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-bold uppercase">En cours</span>
+                                    </div>
+                                    <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer">
+                                        <span class="text-[10px] text-gray-400">En attente</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <footer class="text-center py-6 text-gray-400 text-xs mt-12">
-                    <p>© 2026 Romain Pereira - Portfolio BTS SIO</p>
-                </footer>
+                <div class="euro-view-detail">
+                    <div class="bg-white w-full h-full max-h-[90vh] max-w-7xl rounded-xl flex flex-col p-6 shadow-2xl relative border border-gray-100">
+                        <div class="flex justify-between items-center mb-6 border-b border-gray-200 pb-4">
+                            <button onclick="hideCert()" class="flex items-center gap-2 text-[#36286D] hover:text-[#E9530D] transition font-bold uppercase text-sm tracking-widest"><i class="fas fa-arrow-left"></i> Retour</button>
+                            <h3 id="certDetailTitle" class="text-xl font-bold text-[#E9530D]">Titre Certif</h3>
+                        </div>
+                        <div class="flex-grow overflow-hidden rounded bg-slate-50 flex items-center justify-center relative border border-gray-100">
+                             <img id="certDetailImage" src="" class="max-w-full max-h-full object-contain shadow-lg" alt="Vue Détail Certif">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="hero-bg text-white">
+            <div class="text-center px-4 max-w-4xl mx-auto z-10 reveal-element">
+                <h2 class="text-5xl md:text-6xl font-bold mb-8 tracking-tight">Travaillons ensemble</h2>
+                
+                <div class="flex justify-center items-center gap-4 mt-10 max-w-lg mx-auto w-full">
+                    <a href="mailto:romainp.professionnel@gmail.com" class="flex-grow bg-[#E9530D] text-white px-8 py-4 rounded-full font-bold hover:bg-[#d04a0c] transition shadow-lg text-lg flex justify-center items-center gap-3">
+                        <i class="fas fa-paper-plane"></i> M'envoyer un email
+                    </a>
+                    <a href="https://www.linkedin.com/in/romain-pereira" target="_blank" class="flex-none w-[60px] h-[60px] bg-transparent border-2 border-white text-white rounded-full flex justify-center items-center hover:bg-white hover:text-[#36286D] transition shadow-lg text-2xl" title="Profil LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
             </div>
         </section>
 
     </div>
 
+    <div id="missionModal" class="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full mx-4 relative transform scale-95 transition-transform duration-300 shadow-2xl overflow-y-auto max-h-[90vh]" id="missionModalContent">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-[#E9530D] transition text-2xl z-10"><i class="fas fa-times"></i></button>
+            <h3 id="modalTitle" class="text-2xl font-bold text-[#36286D] mb-6">Titre</h3>
+            <div id="modalBody" class="text-gray-600 text-sm leading-relaxed pr-2">Contenu</div>
+        </div>
+    </div>
+
     <script>
-        function toggleMenu() { document.getElementById('bubbleMenu').classList.toggle('open'); }
+        // --- LOGIQUE MENU BULLE ---
+        function toggleMenu(event) { 
+            if(event.target.closest('#themeToggle')) return;
+            document.getElementById('bubbleMenu').classList.toggle('open'); 
+        }
         
+        // --- LOGIQUE DARK MODE ---
+        function toggleTheme(event) {
+            event.stopPropagation();
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            
+            const btn = document.getElementById('themeToggle');
+            const icon = btn.querySelector('i');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // --- LOGIQUE EURO INFO ---
         const euroWrapper = document.getElementById('euroWrapper');
         const detailImage = document.getElementById('detailImage');
         const detailTitle = document.getElementById('detailTitle');
@@ -486,6 +674,108 @@
 
         function slideOutImage() { euroWrapper.classList.remove('show-detail'); }
 
+
+        // --- LOGIQUE CERTIFICATIONS ---
+        const certWrapper = document.getElementById('certWrapper');
+        const certDetailImage = document.getElementById('certDetailImage');
+        const certDetailTitle = document.getElementById('certDetailTitle');
+
+        function showCert(src, title) {
+            certDetailImage.src = src;
+            certDetailTitle.innerText = title;
+            certWrapper.classList.add('show-detail');
+        }
+
+        function hideCert() {
+            certWrapper.classList.remove('show-detail');
+        }
+
+        // --- LOGIQUE MODALE MISSIONS ---
+        const modalData = {
+            'ticketing': { 
+                title: 'Ticketing & Support Informatique', 
+                content: `
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-[#36286D] text-base mb-2 border-b pb-1 flex items-center"><i class="fas fa-desktop text-[#E9530D] mr-2"></i> Postes de Travail & Utilisateurs</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Configuration, protection et mise en production des postes. Exemple > (nsi)</li>
+                                <li>Création d'utilisateurs locaux, intégration au domaine, gestion des admins et des dossiers partagés.</li>
+                                <li>Déploiement logiciel (Suite Office, etc...), gestion de l'antivirus (avec notre partenaire <a href="https://www2.withsecure.com/fr/home" target="_blank" class="text-[#E9530D] hover:underline">WithSecure</a>) et optimisation.</li>
+                                <li>Gestion de la mort numérique d'un client et des données post-mortem.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-[#36286D] text-base mb-2 border-b pb-1 flex items-center"><i class="fas fa-network-wired text-[#E9530D] mr-2"></i> Connectivité & Réseau</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Résolution des pertes de lien avec le domaine et des problèmes de connexion locale ou VPN.</li>
+                                <li>Dépannage réseau (réinitialisation switchs, problème routeur ou pare-feu) et diagnostic de cartes réseaux.</li>
+                                <li>Accès distant aux serveurs et résolution des pannes d'accès caméras et infrastructure de sécurité.</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-[#36286D] text-base mb-2 border-b pb-1 flex items-center"><i class="fab fa-microsoft text-[#E9530D] mr-2"></i> Écosystème Microsoft 365</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Gestion multi-tenants (Microsoft 365, Entra etc..) : création de boîtes, gestion des licences et paramétrage du MFA. Exemple ></li>
+                                <li>Sécurisation des flux : Antispam (Mailinblack), prévention phishing/piratage et suivi de mails.</li>
+                                <li>Interconnexion entre divers environnements (ex: lien M365 et OVH).</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-[#36286D] text-base mb-2 border-b pb-1 flex items-center"><i class="fas fa-plug text-[#E9530D] mr-2"></i> Périphériques & Téléphonie IP</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Déploiement imprimantes (locales/serveurs d'impression) et terminaux de paiement.</li>
+                                <li>Configuration avancée des scanners (Scan to mail, SMTP, to folder).</li>
+                                <li>Téléphonie IP (Unyc) : gestion des numéros, groupes d'appels, mise à jour, SAV matériel et formation interne. Exemple > (unyc)</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-[#36286D] text-base mb-2 border-b pb-1 flex items-center"><i class="fas fa-tools text-[#E9530D] mr-2"></i> Outils Transverses</h4>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Création de procédures techniques pour le bon suivi des interventions.</li>
+                                <li><strong>Inventaire :</strong> Suivi des entrées/sorties de matériel et participation à l'inventaire annuel.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            'migration': { 
+                title: 'Migration Données', 
+                content: 'Informations complémentaires sur les méthodologies de transfert des données, la préparation des serveurs cibles, la sécurisation des partages réseaux et la vérification des droits d\'accès post-migration.' 
+            }
+        };
+
+        function openModal(id) {
+            document.getElementById('modalTitle').innerText = modalData[id].title;
+            document.getElementById('modalBody').innerHTML = modalData[id].content;
+            const modal = document.getElementById('missionModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('missionModalContent').classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('missionModal');
+            modal.classList.add('opacity-0');
+            document.getElementById('missionModalContent').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        document.getElementById('missionModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // --- SCROLL & NAV ---
         const scrollContainer = document.getElementById('scrollContainer');
         const dots = document.querySelectorAll('.nav-dot');
         const sections = document.querySelectorAll('section');
@@ -497,17 +787,32 @@
 
         document.querySelectorAll('.reveal-element').forEach(el => observer.observe(el));
 
+        let previousSection = 'home';
+
         scrollContainer.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
-                if (scrollContainer.scrollTop >= (section.offsetTop - section.clientHeight / 3)) current = section.getAttribute('id');
+                if (scrollContainer.scrollTop >= (section.offsetTop - section.clientHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
             });
+            
             dots.forEach(dot => {
                 dot.classList.remove('active');
                 if (dot.getAttribute('href').includes(current)) dot.classList.add('active');
             });
-            if (current === 'home') bubbleMenu.classList.remove('open');
-            else bubbleMenu.classList.add('open');
+
+            // Logique d'ouverture automatique du menu
+            if (current !== previousSection) {
+                if (previousSection === 'home' && current === 'about') {
+                    bubbleMenu.classList.add('open');
+                } else if (current === 'contact') {
+                    bubbleMenu.classList.open('open');
+                } else if (current === 'home') {
+                    bubbleMenu.classList.remove('open');
+                }
+                previousSection = current;
+            }
         });
     </script>
 </body>
