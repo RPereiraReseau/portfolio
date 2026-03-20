@@ -124,7 +124,18 @@
 
         /* --- SECTIONS STYLES --- */
         .hero-bg { background: linear-gradient(135deg, #36286D 0%, #2a1f55 50%, #E9530D 100%); }
-        .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+        .video-bg { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 100vw; 
+            height: 56.25vw;
+            min-height: 100vh; 
+            min-width: 177.77vh;
+            z-index: 0; 
+            pointer-events: none;
+        }
         .overlay-dark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(54, 40, 109, 0.85); z-index: 1; }
         .glass-panel { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
         
@@ -261,7 +272,7 @@
         </section>
         
         <section id="euroinfo" class="text-white">
-            <iframe class="video-bg" src="https://www.youtube-nocookie.com/embed/j2PXno8YhwU?autoplay=1&mute=1&loop=1&playlist=j2PXno8YhwU&controls=0&rel=0&playsinline=1&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="pointer-events: none; width: 100vw; height: 100vh;"></iframe>
+            <iframe class="video-bg" src="https://www.youtube-nocookie.com/embed/j2PXno8YhwU?autoplay=1&mute=1&loop=1&playlist=j2PXno8YhwU&controls=0&rel=0&playsinline=1&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <div class="overlay-dark"></div>
             <div class="euro-container-wrapper z-10" id="euroWrapper">
                 <div class="euro-view-main">
