@@ -128,11 +128,9 @@
             position: absolute; 
             top: 50%; 
             left: 50%; 
-            width: 100vw; 
-            height: 56.25vw; /* Ratio 16:9 */
-            min-height: 100vh; 
-            min-width: 177.77vh; /* Ratio 16:9 inverse pour hauteur */
-            transform: translate(-50%, -50%); 
+            width: max(100vw, 177.78vh); 
+            height: max(100vh, 56.25vw); 
+            transform: translate(-50%, -50%) scale(1.05); /* Zoom très léger pour rogner les bordures noires du player YouTube */
             z-index: 0; 
             pointer-events: none; 
         }
