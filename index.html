@@ -29,6 +29,12 @@
         body.dark-mode .nav-link { color: #cbd5e1; }
         body.dark-mode .nav-link:hover { color: #E9530D; }
 
+        /* SCROLLBAR DARK MODE */
+        body.dark-mode ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        body.dark-mode .content-scrollable { scrollbar-color: #a5b4fc rgba(255, 255, 255, 0.05); } 
+        body.dark-mode .content-scrollable::-webkit-scrollbar-thumb { background: #a5b4fc; }
+        body.dark-mode .content-scrollable::-webkit-scrollbar-thumb:hover { background: #E9530D; }
+
         /* --- STYLES SYSTÈME D'ONGLETS (MISSIONS) --- */
         .portfolio-container { border-color: #e2e8f0; }
         .portfolio-content { background-color: white; }
@@ -45,7 +51,7 @@
             border-right: 1px solid transparent;
             background-color: #f8fafc;
             color: #36286D;
-            margin-bottom: -1px; /* Permet à l'onglet actif de superposer la ligne du bas et de se coller au texte */
+            margin-bottom: -1px;
             z-index: 1;
             cursor: pointer;
         }
@@ -54,13 +60,12 @@
             background-color: white;
             color: #E9530D;
             border-top-color: #E9530D;
-            border-bottom-color: white; /* Se fond avec la zone de texte */
+            border-bottom-color: white;
             border-left-color: #e2e8f0;
             border-right-color: #e2e8f0;
             z-index: 10;
         }
 
-        /* Dark mode pour les onglets */
         body.dark-mode .portfolio-container { border-color: #334155; }
         body.dark-mode .portfolio-content { background-color: #1e293b; }
         body.dark-mode .tab-btn { background-color: #0f172a; color: #a5b4fc; border-bottom-color: #334155; }
@@ -92,7 +97,6 @@
         .delay-200 { transition-delay: 0.2s; }
         .delay-300 { transition-delay: 0.3s; }
 
-        /* Animation des onglets */
         @keyframes fadeInTab {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -129,10 +133,10 @@
             top: 50%; 
             left: 50%; 
             width: 100vw; 
-            height: calc(100vw * 9 / 16); /* Ratio 16:9 parfait mathématiquement */
+            height: calc(100vw * 9 / 16); 
             min-height: 100vh; 
-            min-width: calc(100vh * 16 / 9); /* Maintien du ratio même si on étire en hauteur */
-            transform: translate(-50%, -50%) scale(1.15); /* Zoom plus fort pour cacher complètement les UI ou bandes noires résiduelles */
+            min-width: calc(100vh * 16 / 9); 
+            transform: translate(-50%, -50%) scale(1.15); 
             border: none;
             z-index: 0; 
             pointer-events: none; 
@@ -146,10 +150,25 @@
         .euro-container-wrapper.show-detail .euro-view-main { transform: translateX(-100%); opacity: 0.5; }
         .euro-container-wrapper.show-detail .euro-view-detail { transform: translateX(-100%); }
 
-        .content-scrollable { max-height: 85vh; overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; width: 100%; max-width: 80rem; padding-right: 10px; padding-bottom: 35px; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #bbb; border-radius: 3px; }
+        /* --- CUSTOM SCROLLBAR INTERNE (BLEU) --- */
+        .content-scrollable { 
+            max-height: 90vh; 
+            overflow-y: auto; 
+            scrollbar-width: thin; 
+            scrollbar-color: #36286D rgba(54, 40, 109, 0.05); /* Pour Firefox */
+            width: 100%; 
+            max-width: 80rem; 
+            padding-right: 10px; 
+        }
+        
+        .content-scrollable::-webkit-scrollbar-thumb { background: #36286D; border-radius: 4px; }
+        .content-scrollable::-webkit-scrollbar-thumb:hover { background: #E9530D; }
+
+        /* --- CUSTOM SCROLLBAR GLOBALE (ORANGE) --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(54, 40, 109, 0.05); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #E9530D; border-radius: 4px; transition: background 0.3s ease; }
+        ::-webkit-scrollbar-thumb:hover { background: #36286D; }
     </style>
 </head>
 <body>
@@ -552,44 +571,87 @@
         </section>
 
         <section id="gsb" class="bg-white">
-            <div class="max-w-7xl mx-auto px-6 w-full">
-                <div class="text-center mb-12 reveal-element">
-                    <h2 class="text-4xl font-extrabold text-[#36286D] mt-2">Projet GSB</h2>
-                    <p class="text-gray-500 text-sm mt-3 max-w-2xl mx-auto">Conception et déploiement de l'infrastructure réseau du laboratoire médical Galaxy Swiss Bourdin.</p>
+            <div class="max-w-5xl mx-auto px-6 w-full max-h-[90vh] overflow-y-auto content-scrollable pt-8 pb-16">
+                
+                <div class="text-center mb-10 reveal-element">
+                    <h2 class="text-4xl font-extrabold text-[#36286D]">Projet GSB</h2>
+                    <p class="text-gray-500 text-sm mt-3 max-w-2xl mx-auto">Conception et déploiement chronologique de l'infrastructure réseau du laboratoire médical Galaxy Swiss Bourdin.</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-element delay-100">
-                    <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-200 hover:-translate-y-1 transition duration-300">
-                        <div class="w-12 h-12 bg-[#36286D] text-white rounded-lg flex items-center justify-center text-xl mb-4 shadow-md"><i class="fas fa-building"></i></div>
-                        <h3 class="text-lg font-bold text-[#36286D] mb-2">Contexte & Enjeux</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Fusion de plusieurs entités nécessitant une refonte complète de l'infrastructure, avec un fort besoin de centralisation et de sécurisation des données de santé.</p>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-200 hover:-translate-y-1 transition duration-300">
-                        <div class="w-12 h-12 bg-[#E9530D] text-white rounded-lg flex items-center justify-center text-xl mb-4 shadow-md"><i class="fas fa-sitemap"></i></div>
-                        <h3 class="text-lg font-bold text-[#36286D] mb-2">Architecture Réseau</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Déploiement et segmentation réseau : création de VLANs dédiés, routage inter-VLAN, et sécurisation périmétrique via pare-feu (PfSense / DMZ).</p>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-200 hover:-translate-y-1 transition duration-300">
-                        <div class="w-12 h-12 bg-[#36286D] text-white rounded-lg flex items-center justify-center text-xl mb-4 shadow-md"><i class="fab fa-windows"></i></div>
-                        <h3 class="text-lg font-bold text-[#36286D] mb-2">Services Windows</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Mise en place d'un environnement Windows Server complet : Active Directory, DNS, DHCP, GPO pour la gestion du parc, et serveurs de fichiers.</p>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-200 hover:-translate-y-1 transition duration-300">
-                        <div class="w-12 h-12 bg-[#E9530D] text-white rounded-lg flex items-center justify-center text-xl mb-4 shadow-md"><i class="fas fa-ticket-alt"></i></div>
-                        <h3 class="text-lg font-bold text-[#36286D] mb-2">Support & GLPI</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Déploiement d'une solution de ticketing GLPI sous Linux. Gestion des incidents, suivi du matériel et intégration des utilisateurs de l'AD.</p>
-                    </div>
-                    <div class="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-200 hover:-translate-y-1 transition duration-300">
-                        <div class="w-12 h-12 bg-[#36286D] text-white rounded-lg flex items-center justify-center text-xl mb-4 shadow-md"><i class="fas fa-shield-alt"></i></div>
-                        <h3 class="text-lg font-bold text-[#36286D] mb-2">Sauvegarde & Sécurité</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Mise en place d'une politique de sauvegarde (Veeam), durcissement des systèmes et surveillance des points de terminaison.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-md border-b-4 border-[#E9530D] hover:-translate-y-1 transition duration-300 flex flex-col justify-center items-center text-center">
-                        <div class="w-16 h-16 bg-orange-50 text-[#E9530D] rounded-full flex items-center justify-center text-2xl mb-4 shadow-sm"><i class="fas fa-file-pdf"></i></div>
-                        <h3 class="text-lg font-bold text-[#36286D] mb-2">Dossier Technique</h3>
-                        <p class="text-gray-600 text-xs mb-4">Documentation complète de l'architecture et des procédures E5.</p>
-                        <a href="Dossier_E5_GSB.pdf" target="_blank" class="text-[#E9530D] font-bold text-sm hover:underline flex items-center gap-2">Voir le PDF <i class="fas fa-arrow-right text-xs"></i></a>
+                
+                <div class="relative max-w-3xl mx-auto reveal-element delay-100">
+                    
+                    <div class="absolute left-[22px] md:left-[30px] top-6 bottom-[100px] w-1 bg-slate-200 rounded-full"></div>
+
+                    <div class="space-y-8">
+                        
+                        <div class="relative flex items-center md:items-start group">
+                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
+                                1
+                            </div>
+                            <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
+                                <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-project-diagram text-[#E9530D]"></i> Conception & Organisation</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Gestion des outils collaboratifs de l'équipe (Whiteboard pour les schémas, notes communes). Réalisation de la segmentation réseau complète de l'infrastructure (calcul des sous-réseaux et plages IP).</p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center md:items-start group">
+                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
+                                2
+                            </div>
+                            <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
+                                <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-network-wired text-[#E9530D]"></i> Cœur de Réseau</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Déploiement des postes clients (Informatique et Employés). Configuration du routeur initial et mise en place du commutateur virtuel central (Open vSwitch) reliant les différents sous-réseaux.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center md:items-start group">
+                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
+                                3
+                            </div>
+                            <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
+                                <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fab fa-windows text-[#E9530D]"></i> Services Windows</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Participation à la création de l'Active Directory et du DNS. Intégration des postes clients au domaine et assistance sur les scripts de création des utilisateurs et d'attribution des droits.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center md:items-start group">
+                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
+                                4
+                            </div>
+                            <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
+                                <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-shield-alt text-[#E9530D]"></i> Sécurité & DMZ</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Remplacement du routage basique par deux pare-feux OPNsense (interne et externe). Création de la DMZ et gestion stricte des règles de filtrage entre les réseaux internes, la DMZ et Internet.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center md:items-start group">
+                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
+                                5
+                            </div>
+                            <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
+                                <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-server text-[#E9530D]"></i> Évolutions en cours</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed"><em>En cours :</em> Déploiement d'un hyperviseur Proxmox pour héberger l'infrastructure Web (Serveur Web et base de données) en DMZ. Mise en place future du réseau sans fil dédié aux invités.</p>
+                            </div>
+                        </div>
+
+                        <div class="relative flex items-center md:items-start group mt-8">
+                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-orange-50 border-4 border-[#E9530D] text-[#E9530D] rounded-full flex items-center justify-center text-xl shadow-sm transition duration-300">
+                                <i class="fas fa-flag-checkered"></i>
+                            </div>
+                            <div class="ml-6 md:ml-8 flex-grow bg-white p-5 md:p-6 rounded-2xl shadow-md border-b-4 border-[#E9530D] hover:-translate-y-1 transition duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                                <div>
+                                    <h3 class="text-lg font-bold text-[#36286D] mb-1">Dossier Technique</h3>
+                                    <p class="text-gray-600 text-xs md:text-sm">Documentation complète de l'architecture et des procédures E5.</p>
+                                </div>
+                                <a href="Dossier_E5_GSB.pdf" target="_blank" class="flex-none bg-[#E9530D] text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-[#d04a0c] transition shadow flex items-center gap-2">
+                                    Voir le PDF <i class="fas fa-arrow-right text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+                
             </div>
         </section>
 
@@ -648,6 +710,7 @@
                         <div class="reveal-element">
                             <h2 class="text-4xl font-extrabold text-[#36286D] mb-12 text-center">Certifications & Diplômes</h2>
                             <div class="grid md:grid-cols-2 gap-8">
+                                
                                 <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-green-500 flex flex-col md:flex-row gap-6 items-center">
                                     <div class="flex-grow">
                                         <h4 class="font-bold text-xl text-gray-800">SecNumAcadémie</h4>
@@ -658,6 +721,7 @@
                                         <img src="SecNum.png" alt="Miniature SecNumAcadémie" class="w-full h-full object-cover">
                                     </div>
                                 </div>
+                                
                                 <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-[#36286D] flex flex-col md:flex-row gap-6 items-center">
                                     <div class="flex-grow">
                                         <h4 class="font-bold text-xl text-gray-800">Certification Pix</h4>
@@ -668,6 +732,18 @@
                                         <img src="pix.png" alt="Miniature Pix" class="w-full h-full object-cover">
                                     </div>
                                 </div>
+
+                                <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-blue-500 flex flex-col md:flex-row gap-6 items-center">
+                                    <div class="flex-grow">
+                                        <h4 class="font-bold text-xl text-gray-800">L'Atelier RGPD</h4>
+                                        <p class="text-sm text-gray-600 mb-4">CNIL</p>
+                                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold uppercase">Obtenu</span>
+                                    </div>
+                                    <div class="w-40 h-28 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer" onclick="showCert(['RGPD1.png', 'RGPD2.png'], 'L\'Atelier RGPD - CNIL')">
+                                        <img src="RGPD1.png" alt="Miniature L'Atelier RGPD" class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+
                                 <div class="bg-white p-6 rounded-2xl shadow-sm border-l-4 border-orange-500 flex flex-col md:flex-row gap-6 items-center">
                                     <div class="flex-grow">
                                         <h4 class="font-bold text-xl text-gray-800">Microsoft MS-900</h4>
@@ -678,18 +754,26 @@
                                         <span class="text-[10px] text-gray-400">En attente</span>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="euro-view-detail">
-                    <div class="bg-white w-full h-full max-h-[90vh] max-w-7xl rounded-xl flex flex-col p-6 shadow-2xl relative border border-gray-100">
+                <div class="euro-view-detail w-full">
+                    <div class="bg-white w-full h-full max-h-[90vh] max-w-7xl rounded-xl flex flex-col p-6 shadow-2xl relative border border-gray-100 mx-auto mt-8 md:mt-0">
                         <div class="flex justify-between items-center mb-6 border-b border-gray-200 pb-4">
                             <button onclick="hideCert()" class="flex items-center gap-2 text-[#36286D] hover:text-[#E9530D] transition font-bold uppercase text-sm tracking-widest"><i class="fas fa-arrow-left"></i> Retour</button>
                             <h3 id="certDetailTitle" class="text-xl font-bold text-[#E9530D]">Titre Certif</h3>
                         </div>
-                        <div class="flex-grow overflow-hidden rounded bg-slate-50 flex items-center justify-center relative border border-gray-100">
+                        <div class="flex-grow overflow-hidden rounded bg-slate-50 flex items-center justify-center relative border border-gray-100 group">
                              <img id="certDetailImage" src="" class="max-w-full max-h-full object-contain shadow-lg" alt="Vue Détail Certif">
+
+                             <button id="certPrevBtn" onclick="prevCertImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-[#E9530D] text-[#36286D] hover:text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-30" style="display: none;">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="certNextBtn" onclick="nextCertImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-[#E9530D] text-[#36286D] hover:text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-30" style="display: none;">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -739,23 +823,19 @@
 
         // --- LOGIQUE ONGLETS (TABS) POUR MISSIONS ---
         function switchTab(event, tabId) {
-            // Cacher tous les contenus
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => {
                 content.classList.remove('block', 'animate-fadeInTab');
                 content.classList.add('hidden');
             });
 
-            // Retirer la classe 'active' de tous les boutons
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Afficher le contenu lié
             const targetContent = document.getElementById(tabId);
             targetContent.classList.remove('hidden');
             targetContent.classList.add('block', 'animate-fadeInTab');
 
-            // Ajouter la classe 'active' au bouton cliqué
             event.currentTarget.classList.add('active');
         }
 
@@ -795,9 +875,7 @@
             const nextBtn = document.getElementById('galleryNextBtn');
             
             if (prevBtn && nextBtn) {
-                // Cache le bouton précédent si on est sur la première image
                 prevBtn.style.display = currentGalleryIndex === 0 ? 'none' : 'flex';
-                // Cache le bouton suivant si on est sur la dernière image
                 nextBtn.style.display = currentGalleryIndex === currentGallery.length - 1 ? 'none' : 'flex';
             }
         }
@@ -835,15 +913,52 @@
             labWrapper.classList.remove('show-detail');
         }
 
-        // --- LOGIQUE CERTIFICATIONS ---
+        // --- LOGIQUE CERTIFICATIONS (AVEC CARROUSEL) ---
         const certWrapper = document.getElementById('certWrapper');
         const certDetailImage = document.getElementById('certDetailImage');
         const certDetailTitle = document.getElementById('certDetailTitle');
 
-        function showCert(src, title) {
-            certDetailImage.src = src;
+        let currentCertGallery = [];
+        let currentCertIndex = 0;
+
+        function showCert(srcOrArray, title) {
+            // Permet d'accepter une image unique (string) ou un tableau d'images (array)
+            if (Array.isArray(srcOrArray)) {
+                currentCertGallery = srcOrArray;
+            } else {
+                currentCertGallery = [srcOrArray];
+            }
+            
+            currentCertIndex = 0;
             certDetailTitle.innerText = title;
+            updateCertView();
             certWrapper.classList.add('show-detail');
+        }
+
+        function updateCertView() {
+            certDetailImage.src = currentCertGallery[currentCertIndex];
+            
+            const prevBtn = document.getElementById('certPrevBtn');
+            const nextBtn = document.getElementById('certNextBtn');
+            
+            if (prevBtn && nextBtn) {
+                prevBtn.style.display = currentCertIndex === 0 ? 'none' : 'flex';
+                nextBtn.style.display = currentCertIndex === currentCertGallery.length - 1 ? 'none' : 'flex';
+            }
+        }
+
+        function prevCertImage() {
+            if (currentCertIndex > 0) {
+                currentCertIndex--;
+                updateCertView();
+            }
+        }
+
+        function nextCertImage() {
+            if (currentCertIndex < currentCertGallery.length - 1) {
+                currentCertIndex++;
+                updateCertView();
+            }
         }
 
         function hideCert() {
