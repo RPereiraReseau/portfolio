@@ -390,7 +390,7 @@
                                 <button onclick="switchTab(event, 'tab-reseau')" class="tab-btn flex-none md:flex-1 whitespace-nowrap">Réseau & Connectivité</button>
                                 <button onclick="switchTab(event, 'tab-m365')" class="tab-btn flex-none md:flex-1 whitespace-nowrap">Écosystème M365</button>
                                 <button onclick="switchTab(event, 'tab-voip')" class="tab-btn flex-none md:flex-1 whitespace-nowrap">Périphériques & VoIP</button>
-                                <button onclick="switchTab(event, 'tab-outils')" class="tab-btn flex-none md:flex-1 whitespace-nowrap">Outils Transverses</button>
+                                <button onclick="switchTab(event, 'tab-outils')" class="tab-btn flex-none md:flex-1 whitespace-nowrap">Documentation & Gestion materielle</button>
                                 <button onclick="switchTab(event, 'tab-migration')" class="tab-btn flex-none md:flex-1 whitespace-nowrap">Migration Données</button>
                             </div>
 
@@ -409,10 +409,10 @@
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
                                             <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort('preuve-postes.png', 'Preuve : Postes de Travail')">
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['Pu-1.png', 'Pu-2.png', 'Pu-3.png', 'Pu-4.png', 'Pu-5.png', 'Pu-6.png'], 'Preuve : Postes de Travail')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="preuve-postes.png" alt="Preuve Postes" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="Pu-1.png" alt="Preuve Postes" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -430,10 +430,10 @@
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
                                             <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort('preuve-reseau.png', 'Preuve : Connectivité & Réseau')">
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['RC-1.png', 'RC-2.png', 'RC-3.png', 'RC-4.png'], 'Preuve : Connectivité & Réseau')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="preuve-reseau.png" alt="Preuve Réseau" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="RC-1.png" alt="Preuve Réseau" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -451,10 +451,10 @@
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
                                             <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort('preuve-m365.png', 'Preuve : Écosystème M365')">
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['EM-1.png', 'EM-2.png', 'EM-3.png', 'EM-4.png', 'EM-5.png', 'EM-6.png', 'EM-7.png'], 'Preuve : Écosystème M365')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="preuve-m365.png" alt="Preuve M365" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="EM-1.png" alt="Preuve M365" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -472,10 +472,10 @@
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
                                             <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort('preuve-voip.png', 'Preuve : Périphériques & Téléphonie')">
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['PV-1.png', 'PV-2.png', 'PV-3.png'], 'Preuve : Périphériques & Téléphonie')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="preuve-voip.png" alt="Preuve VoIP" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="PV-1.png" alt="Preuve VoIP" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -484,18 +484,18 @@
                                 <div id="tab-outils" class="tab-content hidden">
                                     <div class="grid md:grid-cols-3 gap-8 items-start">
                                         <div class="md:col-span-2">
-                                            <h3 class="text-2xl font-bold text-[#36286D] mb-5 flex items-center border-b pb-3"><i class="fas fa-tools text-[#E9530D] mr-3 text-3xl"></i> Outils Transverses</h3>
+                                            <h3 class="text-2xl font-bold text-[#36286D] mb-5 flex items-center border-b pb-3"><i class="fas fa-tools text-[#E9530D] mr-3 text-3xl"></i> Documentation & Gestion materielle</h3>
                                             <ul class="list-disc pl-5 space-y-3 text-gray-600 text-base leading-relaxed">
                                                 <li>Création de procédures techniques pour le bon suivi des interventions.</li>
                                                 <li><strong>Inventaire :</strong> Suivi des entrées/sorties de matériel et participation à l'inventaire annuel.</li>
                                             </ul>
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
-                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort('preuve-outils.png', 'Preuve : Outils Transverses')">
+                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en PDF</h4>
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="window.open('RDS.pdf', '_blank')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="preuve-outils.png" alt="Preuve Outils" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="RDS.png" alt="Preuve Outils" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -516,10 +516,10 @@
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
                                             <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort('preuve-migration.png', 'Preuve : Migration Données')">
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['K-1.png', 'K-2.png'], 'Preuve : Migration Données')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="preuve-migration.png" alt="Preuve Migration" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="K-1.png" alt="Preuve Migration" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -536,8 +536,15 @@
                             <button onclick="hidePort()" class="flex items-center gap-2 text-[#36286D] hover:text-[#E9530D] transition font-bold uppercase text-sm tracking-widest"><i class="fas fa-arrow-left"></i> Retour</button>
                             <h3 id="portDetailTitle" class="text-xl font-bold text-[#E9530D]">Preuve</h3>
                         </div>
-                        <div class="flex-grow overflow-hidden rounded bg-slate-50 flex items-center justify-center relative border border-gray-100">
-                             <img id="portDetailImage" src="" class="max-w-full max-h-full object-contain shadow-lg" alt="Vue Détail Preuve">
+                        <div class="flex-grow overflow-hidden rounded bg-slate-50 flex items-center justify-center relative border border-gray-100 group">
+                            <img id="portDetailImage" src="" class="max-w-full max-h-full object-contain shadow-lg" alt="Vue Détail Preuve">
+                             
+                            <button id="galleryPrevBtn" onclick="prevGalleryImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-[#E9530D] text-[#36286D] hover:text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-30" style="display: none;">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="galleryNextBtn" onclick="nextGalleryImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-[#E9530D] text-[#36286D] hover:text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-30" style="display: none;">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -765,15 +772,48 @@
 
         function slideOutImage() { euroWrapper.classList.remove('show-detail'); }
 
-        // --- LOGIQUE PORTFOLIO ---
+        // --- LOGIQUE PORTFOLIO (AVEC CARROUSEL) ---
         const portWrapper = document.getElementById('portWrapper');
         const portDetailImage = document.getElementById('portDetailImage');
         const portDetailTitle = document.getElementById('portDetailTitle');
+        
+        let currentGallery = [];
+        let currentGalleryIndex = 0;
 
-        function showPort(src, title) {
-            portDetailImage.src = src;
+        function showPort(imagesArray, title) {
+            currentGallery = imagesArray;
+            currentGalleryIndex = 0;
             portDetailTitle.innerText = title;
+            updateGalleryView();
             portWrapper.classList.add('show-detail');
+        }
+
+        function updateGalleryView() {
+            portDetailImage.src = currentGallery[currentGalleryIndex];
+            
+            const prevBtn = document.getElementById('galleryPrevBtn');
+            const nextBtn = document.getElementById('galleryNextBtn');
+            
+            if (prevBtn && nextBtn) {
+                // Cache le bouton précédent si on est sur la première image
+                prevBtn.style.display = currentGalleryIndex === 0 ? 'none' : 'flex';
+                // Cache le bouton suivant si on est sur la dernière image
+                nextBtn.style.display = currentGalleryIndex === currentGallery.length - 1 ? 'none' : 'flex';
+            }
+        }
+
+        function prevGalleryImage() {
+            if (currentGalleryIndex > 0) {
+                currentGalleryIndex--;
+                updateGalleryView();
+            }
+        }
+
+        function nextGalleryImage() {
+            if (currentGalleryIndex < currentGallery.length - 1) {
+                currentGalleryIndex++;
+                updateGalleryView();
+            }
         }
 
         function hidePort() {
