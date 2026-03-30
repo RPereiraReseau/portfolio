@@ -356,9 +356,9 @@
                             </div>
                         </div>
                         <div class="glass-panel p-6 rounded-xl reveal-element delay-300">
-                            <h3 class="text-xl font-bold mb-4 text-[#E9530D]">Équipe & Organisation</h3>
+                            <h3 class="text-xl font-bold mb-4 text-[#E9530D]">Équipe, Organisation & Analytics</h3>
                             <p class="text-xs text-gray-300 mb-4"><i class="fas fa-hand-pointer mr-1"></i> Cliquez sur les cartes pour voir en plein écran.</p>
-                            <div class="grid md:grid-cols-2 gap-8">
+                            <div class="grid md:grid-cols-3 gap-8">
                                 <div class="group relative cursor-pointer" onclick="slideInImage('Organigramme.jpg', 'Structure & Organisation')">
                                     <p class="text-sm mb-2 font-bold flex items-center gap-2">Organigramme <i class="fas fa-chevron-right text-[#E9530D] text-xs"></i></p>
                                     <div class="overflow-hidden rounded-lg border border-white/20 relative shadow-lg">
@@ -373,6 +373,14 @@
                                         <div class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition z-10"></div>
                                         <i class="fas fa-arrow-right absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-4xl drop-shadow-lg"></i>
                                         <img src="Trombinoscope.jpg" class="w-full h-56 md:h-64 object-cover object-top group-hover:scale-105 transition duration-500">
+                                    </div>
+                                </div>
+                                <div class="group relative cursor-pointer" onclick="slideInImage('analytics.png', 'Google Analytics')">
+                                    <p class="text-sm mb-2 font-bold flex items-center gap-2">Performances Web <i class="fas fa-chevron-right text-[#E9530D] text-xs"></i></p>
+                                    <div class="overflow-hidden rounded-lg border border-white/20 relative shadow-lg">
+                                        <div class="absolute inset-0 bg-black/30 group-hover:bg-transparent transition z-10"></div>
+                                        <i class="fas fa-arrow-right absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-4xl drop-shadow-lg"></i>
+                                        <img src="analytics.png" class="w-full h-56 md:h-64 object-cover object-top group-hover:scale-105 transition duration-500">
                                     </div>
                                 </div>
                             </div>
@@ -427,11 +435,11 @@
                                             </ul>
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
-                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['PU-1.png', 'PU-2.png', 'PU-3.png', 'PU-4.png', 'PU-5.png', 'PU-6.png'], 'Preuve : Postes de Travail')">
+                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Détails en image</h4>
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['PU-1.png', 'PU-2.png', 'PU-3.png', 'PU-4.png', 'PU-5.png', 'PU-6.png'], 'Détails : Postes de Travail')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="PU-1.png" alt="Preuve Postes" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="PU-1.png" alt="Détails Postes" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -448,11 +456,11 @@
                                             </ul>
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
-                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['RC-1.png', 'RC-2.png', 'RC-3.png', 'RC-4.png'], 'Preuve : Connectivité & Réseau')">
+                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Détails en image</h4>
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['RC-1.png', 'RC-2.png', 'RC-3.png', 'RC-4.png'], 'Détails : Connectivité & Réseau')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="RC-1.png" alt="Preuve Réseau" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="RC-1.png" alt="Détails Réseau" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -469,11 +477,11 @@
                                             </ul>
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
-                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['EM-1.png', 'EM-2.png', 'EM-3.png', 'EM-4.png', 'EM-5.png', 'EM-6.png', 'EM-7.png'], 'Preuve : Écosystème M365')">
+                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Détails en image</h4>
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['EM-1.png', 'EM-2.png', 'EM-3.png', 'EM-4.png', 'EM-5.png', 'EM-6.png', 'EM-7.png'], 'Détails : Écosystème M365')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="EM-1.png" alt="Preuve M365" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="EM-1.png" alt="Détails M365" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -490,11 +498,11 @@
                                             </ul>
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
-                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['PV-1.png', 'PV-2.png', 'PV-3.png'], 'Preuve : Périphériques & Téléphonie')">
+                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Détails en image</h4>
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['PV-1.png', 'PV-2.png', 'PV-3.png'], 'Détails : Périphériques & Téléphonie')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="PV-1.png" alt="Preuve VoIP" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="PV-1.png" alt="Détails VoIP" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -507,14 +515,25 @@
                                             <ul class="list-disc pl-5 space-y-3 text-gray-600 text-base leading-relaxed">
                                                 <li>Création de procédures techniques pour le bon suivi des interventions.</li>
                                                 <li><strong>Inventaire :</strong> Suivi des entrées/sorties de matériel et participation à l'inventaire annuel.</li>
+                                                <li>Mission de formation des collaborateurs en interne.</li>
                                             </ul>
                                         </div>
-                                        <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
-                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en PDF</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="window.open('RDS.pdf', '_blank')">
-                                                <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
-                                                <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="RDS.png" alt="Preuve Outils" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                        <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-3">
+                                            <div class="w-full">
+                                                <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center mb-2">Exemple de procédure</h4>
+                                                <div class="w-full h-20 md:h-24 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="window.open('RDS.pdf', '_blank')">
+                                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
+                                                    <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
+                                                    <img src="RDS.png" alt="Détails Outils" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                </div>
+                                            </div>
+                                            <div class="w-full">
+                                                <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center mb-2 mt-1">Support de formation</h4>
+                                                <div class="w-full h-20 md:h-24 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['DG-1.png'], 'Formation Interne')">
+                                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
+                                                    <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
+                                                    <img src="DG-1.png" alt="Détails Formation" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -534,11 +553,11 @@
                                             </div>
                                         </div>
                                         <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col items-center justify-center gap-4">
-                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Preuve en image</h4>
-                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['K-1.png', 'K-2.png'], 'Preuve : Migration Données')">
+                                            <h4 class="text-xs font-bold text-[#E9530D] uppercase tracking-widest text-center">Détails en image</h4>
+                                            <div class="w-full h-32 md:h-48 bg-white rounded-lg border border-dashed border-gray-300 flex items-center justify-center overflow-hidden cursor-pointer group shadow-sm relative" onclick="showPort(['K-1.png', 'K-2.png'], 'Détails : Migration Données')">
                                                 <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition z-10 hidden md:block"></div>
                                                 <i class="fas fa-search-plus absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white opacity-0 group-hover:opacity-100 transition z-20 text-3xl drop-shadow-md hidden md:block"></i>
-                                                <img src="K-1.png" alt="Preuve Migration" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                                <img src="K-1.png" alt="Détails Migration" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                                             </div>
                                         </div>
                                     </div>
@@ -553,10 +572,10 @@
                     <div class="bg-white w-full h-full max-h-[90vh] max-w-7xl rounded-xl flex flex-col p-6 shadow-2xl relative border border-gray-100 mx-auto mt-8 md:mt-0">
                         <div class="flex justify-between items-center mb-6 border-b border-gray-200 pb-4">
                             <button onclick="hidePort()" class="flex items-center gap-2 text-[#36286D] hover:text-[#E9530D] transition font-bold uppercase text-sm tracking-widest"><i class="fas fa-arrow-left"></i> Retour</button>
-                            <h3 id="portDetailTitle" class="text-xl font-bold text-[#E9530D]">Preuve</h3>
+                            <h3 id="portDetailTitle" class="text-xl font-bold text-[#E9530D]">Détails</h3>
                         </div>
                         <div class="flex-grow overflow-hidden rounded bg-slate-50 flex items-center justify-center relative border border-gray-100 group">
-                            <img id="portDetailImage" src="" class="max-w-full max-h-full object-contain shadow-lg" alt="Vue Détail Preuve">
+                            <img id="portDetailImage" src="" class="max-w-full max-h-full object-contain shadow-lg" alt="Vue Détails">
                              
                             <button id="galleryPrevBtn" onclick="prevGalleryImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-[#E9530D] text-[#36286D] hover:text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-30" style="display: none;">
                                 <i class="fas fa-chevron-left"></i>
@@ -571,87 +590,124 @@
         </section>
 
         <section id="gsb" class="bg-white">
-            <div class="max-w-5xl mx-auto px-6 w-full max-h-[90vh] overflow-y-auto content-scrollable pt-8 pb-16">
-                
-                <div class="text-center mb-10 reveal-element">
-                    <h2 class="text-4xl font-extrabold text-[#36286D]">Projet GSB</h2>
-                    <p class="text-gray-500 text-sm mt-3 max-w-2xl mx-auto">Conception et déploiement chronologique de l'infrastructure réseau du laboratoire médical Galaxy Swiss Bourdin.</p>
-                </div>
-                
-                <div class="relative max-w-3xl mx-auto reveal-element delay-100">
-                    
-                    <div class="absolute left-[22px] md:left-[30px] top-6 bottom-[100px] w-1 bg-slate-200 rounded-full"></div>
-
-                    <div class="space-y-8">
+            <div class="euro-container-wrapper" id="gsbWrapper">
+                <div class="euro-view-main flex-col w-full">
+                    <div class="max-w-5xl mx-auto px-6 w-full max-h-[90vh] overflow-y-auto content-scrollable pt-8 pb-16">
                         
-                        <div class="relative flex items-center md:items-start group">
-                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
-                                1
-                            </div>
-                            <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
-                                <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-project-diagram text-[#E9530D]"></i> Conception & Organisation</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Gestion des outils collaboratifs de l'équipe (Whiteboard pour les schémas, notes communes). Réalisation de la segmentation réseau complète de l'infrastructure (calcul des sous-réseaux et plages IP).</p>
-                            </div>
+                        <div class="text-center mb-10 reveal-element">
+                            <h2 class="text-4xl font-extrabold text-[#36286D]">Projet GSB</h2>
+                            <p class="text-gray-500 text-sm mt-3 max-w-2xl mx-auto">Conception et déploiement chronologique de l'infrastructure réseau du laboratoire médical Galaxy Swiss Bourdin.</p>
                         </div>
+                        
+                        <div class="relative max-w-3xl mx-auto reveal-element delay-100">
+                            
+                            <div class="absolute left-[22px] md:left-[30px] top-6 bottom-[100px] w-1 bg-slate-200 rounded-full"></div>
 
-                        <div class="relative flex items-center md:items-start group">
-                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
-                                2
-                            </div>
-                            <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
-                                <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-network-wired text-[#E9530D]"></i> Cœur de Réseau</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Déploiement des postes clients (Informatique et Employés). Configuration du routeur initial et mise en place du commutateur virtuel central (Open vSwitch) reliant les différents sous-réseaux.</p>
-                            </div>
-                        </div>
-
-                        <div class="relative flex items-center md:items-start group">
-                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
-                                3
-                            </div>
-                            <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
-                                <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fab fa-windows text-[#E9530D]"></i> Services Windows</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Participation à la création de l'Active Directory et du DNS. Intégration des postes clients au domaine et assistance sur les scripts de création des utilisateurs et d'attribution des droits.</p>
-                            </div>
-                        </div>
-
-                        <div class="relative flex items-center md:items-start group">
-                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
-                                4
-                            </div>
-                            <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
-                                <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-shield-alt text-[#E9530D]"></i> Sécurité & DMZ</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Remplacement du routage basique par deux pare-feux OPNsense (interne et externe). Création de la DMZ et gestion stricte des règles de filtrage entre les réseaux internes, la DMZ et Internet.</p>
-                            </div>
-                        </div>
-
-                        <div class="relative flex items-center md:items-start group">
-                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
-                                5
-                            </div>
-                            <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
-                                <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-server text-[#E9530D]"></i> Évolutions en cours</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed"><em>En cours :</em> Déploiement d'un hyperviseur Proxmox pour héberger l'infrastructure Web (Serveur Web et base de données) en DMZ. Mise en place future du réseau sans fil dédié aux invités.</p>
-                            </div>
-                        </div>
-
-                        <div class="relative flex items-center md:items-start group mt-8">
-                            <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-orange-50 border-4 border-[#E9530D] text-[#E9530D] rounded-full flex items-center justify-center text-xl shadow-sm transition duration-300">
-                                <i class="fas fa-flag-checkered"></i>
-                            </div>
-                            <div class="ml-6 md:ml-8 flex-grow bg-white p-5 md:p-6 rounded-2xl shadow-md border-b-4 border-[#E9530D] hover:-translate-y-1 transition duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-                                <div>
-                                    <h3 class="text-lg font-bold text-[#36286D] mb-1">Dossier Technique</h3>
-                                    <p class="text-gray-600 text-xs md:text-sm">Documentation complète de l'architecture et des procédures E5.</p>
+                            <div class="space-y-8">
+                                
+                                <div class="relative flex items-center md:items-start mb-8">
+                                    <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-slate-200 text-slate-400 rounded-full flex items-center justify-center text-lg md:text-xl shadow-sm">
+                                        <i class="fas fa-info"></i>
+                                    </div>
+                                    <div class="ml-6 md:ml-8 flex-grow bg-slate-100 p-5 md:p-6 rounded-2xl shadow-inner border border-slate-200 relative">
+                                        <h3 class="text-lg font-bold text-[#36286D] mb-2">Contexte du Projet</h3>
+                                        <p class="text-gray-600 text-sm leading-relaxed">Le laboratoire médical <strong>Galaxy Swiss Bourdin (GSB)</strong> est une entreprise fictive issue de la fusion entre le géant américain Galaxy et le conglomérat européen Swiss Bourdin. Ce projet fil rouge du BTS SIO consiste à concevoir, déployer et sécuriser l'intégralité de leur nouvelle infrastructure réseau en partant de zéro, afin de répondre à leurs besoins de centralisation et de protection des données sensibles.</p>
+                                    </div>
                                 </div>
-                                <a href="Dossier_E5_GSB.pdf" target="_blank" class="flex-none bg-[#E9530D] text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-[#d04a0c] transition shadow flex items-center gap-2">
-                                    Voir le PDF <i class="fas fa-arrow-right text-xs"></i>
-                                </a>
+
+                                <div class="relative flex items-center md:items-start group cursor-pointer" onclick="showGsb(['GSB1-1.png', 'GSB1-2.png', 'GSB1-3.png'], 'Conception & Organisation')">
+                                    <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
+                                        1
+                                    </div>
+                                    <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
+                                        <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-project-diagram text-[#E9530D]"></i> Conception & Organisation</h3>
+                                        <p class="text-gray-600 text-sm leading-relaxed">Gestion des outils collaboratifs de l'équipe (Whiteboard pour les schémas, notes communes). Réalisation de la segmentation réseau complète de l'infrastructure (calcul des sous-réseaux et plages IP).</p>
+                                        <p class="text-xs text-[#E9530D] mt-3 font-bold"><i class="fas fa-search-plus"></i> Cliquez pour voir les détails</p>
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-center md:items-start group cursor-pointer" onclick="showGsb(['GSB2-1.png', 'GSB2-2.png', 'GSB2-3.png'], 'Cœur de Réseau')">
+                                    <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
+                                        2
+                                    </div>
+                                    <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
+                                        <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-network-wired text-[#E9530D]"></i> Cœur de Réseau</h3>
+                                        <p class="text-gray-600 text-sm leading-relaxed">Déploiement des postes clients (Informatique et Employés). Configuration du routeur initial et mise en place du commutateur virtuel central (Open vSwitch) reliant les différents sous-réseaux.</p>
+                                        <p class="text-xs text-[#E9530D] mt-3 font-bold"><i class="fas fa-search-plus"></i> Cliquez pour voir les détails</p>
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-center md:items-start group cursor-pointer" onclick="showGsb(['GSB3-1.png', 'GSB3-2.png', 'GSB3-3.png', 'GSB3-4.png'], 'Services Windows')">
+                                    <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
+                                        3
+                                    </div>
+                                    <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
+                                        <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fab fa-windows text-[#E9530D]"></i> Services Windows</h3>
+                                        <p class="text-gray-600 text-sm leading-relaxed">Participation à la création de l'Active Directory et du DNS. Intégration des postes clients au domaine et assistance sur les scripts de création des utilisateurs et d'attribution des droits.</p>
+                                        <p class="text-xs text-[#E9530D] mt-3 font-bold"><i class="fas fa-search-plus"></i> Cliquez pour voir les détails</p>
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-center md:items-start group cursor-pointer" onclick="showGsb(['GSB4-1.png', 'GSB4-2.png', 'GSB4-3.png', 'GSB4-4.png'], 'Sécurité & DMZ')">
+                                    <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
+                                        4
+                                    </div>
+                                    <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
+                                        <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-shield-alt text-[#E9530D]"></i> Sécurité & DMZ</h3>
+                                        <p class="text-gray-600 text-sm leading-relaxed">Remplacement du routage basique par deux pare-feux OPNsense (interne et externe). Création de la DMZ et gestion stricte des règles de filtrage entre les réseaux internes, la DMZ et Internet.</p>
+                                        <p class="text-xs text-[#E9530D] mt-3 font-bold"><i class="fas fa-search-plus"></i> Cliquez pour voir les détails</p>
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-center md:items-start group cursor-pointer" onclick="showGsb(['GSB5-1.png'], 'Évolutions en cours')">
+                                    <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-[#36286D] text-[#36286D] rounded-full flex items-center justify-center text-lg md:text-xl font-bold shadow-sm group-hover:bg-[#E9530D] group-hover:border-[#E9530D] group-hover:text-white transition duration-300">
+                                        5
+                                    </div>
+                                    <div class="ml-6 md:ml-8 flex-grow bg-slate-50 p-5 md:p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition duration-300 relative">
+                                        <h3 class="text-lg font-bold text-[#36286D] mb-2 flex items-center gap-2"><i class="fas fa-server text-[#E9530D]"></i> Évolutions en cours</h3>
+                                        <p class="text-gray-600 text-sm leading-relaxed"><em>En cours :</em> Déploiement d'un hyperviseur Proxmox pour héberger l'infrastructure Web (Serveur Web et base de données) en DMZ. Mise en place future du réseau sans fil dédié aux invités.</p>
+                                        <p class="text-xs text-[#E9530D] mt-3 font-bold"><i class="fas fa-search-plus"></i> Cliquez pour voir les détails</p>
+                                    </div>
+                                </div>
+
+                                <div class="relative flex items-center md:items-start group mt-8">
+                                    <div class="z-10 flex-none w-12 h-12 md:w-16 md:h-16 bg-orange-50 border-4 border-[#E9530D] text-[#E9530D] rounded-full flex items-center justify-center text-xl shadow-sm transition duration-300">
+                                        <i class="fas fa-flag-checkered"></i>
+                                    </div>
+                                    <div class="ml-6 md:ml-8 flex-grow bg-white p-5 md:p-6 rounded-2xl shadow-md border-b-4 border-[#E9530D] hover:-translate-y-1 transition duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                                        <div>
+                                            <h3 class="text-lg font-bold text-[#36286D] mb-1">Dossier Technique</h3>
+                                            <p class="text-gray-600 text-xs md:text-sm">Documentation complète de l'architecture et des procédures E5.</p>
+                                        </div>
+                                        <button onclick="showGsb(['GSB0-1.png', 'GSB0-2.png', 'GSB0-3.png'], 'Dossier Technique')" class="flex-none bg-[#E9530D] text-white px-5 py-2 rounded-full font-bold text-sm hover:bg-[#d04a0c] transition shadow flex items-center gap-2 cursor-pointer">
+                                            Voir <i class="fas fa-arrow-right text-xs"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
+                        
                     </div>
                 </div>
-                
+                <div class="euro-view-detail w-full">
+                    <div class="bg-white w-full h-full max-h-[90vh] max-w-7xl rounded-xl flex flex-col p-6 shadow-2xl relative border border-gray-100 mx-auto mt-8 md:mt-0">
+                        <div class="flex justify-between items-center mb-6 border-b border-gray-200 pb-4">
+                            <button onclick="hideGsb()" class="flex items-center gap-2 text-[#36286D] hover:text-[#E9530D] transition font-bold uppercase text-sm tracking-widest"><i class="fas fa-arrow-left"></i> Retour</button>
+                            <h3 id="gsbDetailTitle" class="text-xl font-bold text-[#E9530D]">Détails</h3>
+                        </div>
+                        <div class="flex-grow overflow-hidden rounded bg-slate-50 flex items-center justify-center relative border border-gray-100 group">
+                            <img id="gsbDetailImage" src="" class="max-w-full max-h-full object-contain shadow-lg" alt="Vue Détails GSB">
+                             
+                            <button id="gsbPrevBtn" onclick="prevGsbImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-[#E9530D] text-[#36286D] hover:text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-30" style="display: none;">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="gsbNextBtn" onclick="nextGsbImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-[#E9530D] text-[#36286D] hover:text-white w-10 h-10 rounded-full flex items-center justify-center shadow-md transition z-30" style="display: none;">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -898,6 +954,52 @@
             portWrapper.classList.remove('show-detail');
         }
 
+        // --- LOGIQUE GSB (AVEC CARROUSEL) ---
+        const gsbWrapper = document.getElementById('gsbWrapper');
+        const gsbDetailImage = document.getElementById('gsbDetailImage');
+        const gsbDetailTitle = document.getElementById('gsbDetailTitle');
+        
+        let currentGsbGallery = [];
+        let currentGsbIndex = 0;
+
+        function showGsb(imagesArray, title) {
+            currentGsbGallery = imagesArray;
+            currentGsbIndex = 0;
+            gsbDetailTitle.innerText = title;
+            updateGsbView();
+            gsbWrapper.classList.add('show-detail');
+        }
+
+        function updateGsbView() {
+            gsbDetailImage.src = currentGsbGallery[currentGsbIndex];
+            
+            const prevBtn = document.getElementById('gsbPrevBtn');
+            const nextBtn = document.getElementById('gsbNextBtn');
+            
+            if (prevBtn && nextBtn) {
+                prevBtn.style.display = currentGsbIndex === 0 ? 'none' : 'flex';
+                nextBtn.style.display = currentGsbIndex === currentGsbGallery.length - 1 ? 'none' : 'flex';
+            }
+        }
+
+        function prevGsbImage() {
+            if (currentGsbIndex > 0) {
+                currentGsbIndex--;
+                updateGsbView();
+            }
+        }
+
+        function nextGsbImage() {
+            if (currentGsbIndex < currentGsbGallery.length - 1) {
+                currentGsbIndex++;
+                updateGsbView();
+            }
+        }
+
+        function hideGsb() {
+            gsbWrapper.classList.remove('show-detail');
+        }
+
         // --- LOGIQUE LAB ---
         const labWrapper = document.getElementById('labWrapper');
         const labDetailImage = document.getElementById('labDetailImage');
@@ -922,7 +1024,6 @@
         let currentCertIndex = 0;
 
         function showCert(srcOrArray, title) {
-            // Permet d'accepter une image unique (string) ou un tableau d'images (array)
             if (Array.isArray(srcOrArray)) {
                 currentCertGallery = srcOrArray;
             } else {
